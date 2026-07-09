@@ -1,8 +1,6 @@
 import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
-import { ArrowRightIcon, GithubIcon } from "./icons";
-
-const GITHUB_URL = "https://github.com/yourvouch/vouch-starter-kit";
+import { ArrowRightIcon, UploadIcon } from "./icons";
 
 export function Hero() {
   return (
@@ -27,9 +25,9 @@ export function Hero() {
           an analyst, or a subscription.
         </p>
         <div className="flex flex-col gap-4 sm:flex-row">
-          <Button href={GITHUB_URL} external variant="primary">
-            <GithubIcon className="h-4 w-4" aria-hidden="true" />
-            View on GitHub
+          <Button href="/upload" variant="primary">
+            <UploadIcon className="h-4 w-4" aria-hidden="true" />
+            Upload your CSV
           </Button>
           <Button href="#how-it-works" variant="secondary">
             See how it works

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-
-type ButtonVariant = "primary" | "secondary";
+import { buttonBaseStyles, buttonVariantStyles, type ButtonVariant } from "./buttonStyles";
 
 interface ButtonProps {
   href: string;
@@ -11,16 +10,6 @@ interface ButtonProps {
   className?: string;
 }
 
-const baseStyles =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500";
-
-const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    "bg-zinc-900 text-white hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200",
-  secondary:
-    "text-zinc-900 ring-1 ring-inset ring-zinc-300 hover:bg-zinc-100 dark:text-white dark:ring-zinc-700 dark:hover:bg-zinc-800",
-};
-
 export function Button({
   href,
   children,
@@ -28,7 +17,7 @@ export function Button({
   external = false,
   className = "",
 }: ButtonProps) {
-  const classes = `${baseStyles} ${variantStyles[variant]} ${className}`;
+  const classes = `${buttonBaseStyles} ${buttonVariantStyles[variant]} ${className}`;
 
   if (external) {
     return (
