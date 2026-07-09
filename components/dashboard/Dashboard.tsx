@@ -1,7 +1,9 @@
 import { buildDashboardMetrics } from "@/lib/insights/buildDashboardMetrics";
+import { buildInsightSummary } from "@/lib/insights/buildInsightSummary";
 import { formatCurrency } from "@/lib/insights/format";
 import type { ColumnMapping, CsvRow } from "@/lib/upload/types";
 import { DashboardCard } from "./DashboardCard";
+import { InsightSummary } from "./InsightSummary";
 import { LeadSourceTable } from "./LeadSourceTable";
 import { OwnerTable } from "./OwnerTable";
 import { RevenueChart } from "./RevenueChart";
@@ -15,9 +17,12 @@ interface DashboardProps {
 
 export function Dashboard({ rows, mapping }: DashboardProps) {
   const metrics = buildDashboardMetrics(rows, mapping);
+  const summary = buildInsightSummary(metrics);
 
   return (
     <div className="w-full space-y-8">
+      <InsightSummary summary={summary} />
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Total Leads" value={metrics.totalLeads} />
         <StatCard label="Total Revenue" value={metrics.totalRevenue} format={formatCurrency} />

@@ -42,3 +42,9 @@ export interface DashboardMetrics {
   topOwners: Metric<OwnerBucket[]>;
   revenueByStage: Metric<StageRevenueBucket[]>;
 }
+
+export interface InsightSummary {
+  summaryText: string;
+  observations: string[];
+  nextActions: string[];
+}
