@@ -7,8 +7,11 @@
 [![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-000000.svg)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6.svg)](https://www.typescriptlang.org)
 
-<!-- ![Vouch dashboard screenshot](docs/images/dashboard.png) -->
-*Screenshot coming soon — see [`docs/images/`](docs/images/) for what's planned.*
+**Dashboard Overview**
+
+![Dashboard overview](docs/images/dashboard-overview.png)
+
+*The full Vouch dashboard — Business Health, Executive Summary, charts, and tables, generated entirely in your browser.*
 
 ---
 
@@ -102,16 +105,47 @@ What Vouch does **not** do (by design, for now): authentication, a database, pay
 
 ## Screenshots
 
-Screenshots are not yet included in this repository. Placeholders below show what's planned — see [`docs/images/`](docs/images/) for details.
+### 2. Landing Page
 
-<!-- ![Upload and column mapping](docs/images/upload.png) -->
-*`docs/images/upload.png` — the upload and column-mapping flow*
+![Landing page](docs/images/landing-page.png)
 
-<!-- ![Executive Summary](docs/images/executive-summary.png) -->
-*`docs/images/executive-summary.png` — the Business Health strip and Executive Summary*
+*The Vouch landing page, describing the product and linking into the upload flow.*
 
-<!-- ![Full dashboard](docs/images/dashboard.png) -->
-*`docs/images/dashboard.png` — the full dashboard with charts and tables*
+### 3. Upload CSV
+
+![Upload CSV](docs/images/upload-csv.png)
+
+*Drag-and-drop CSV upload, parsed entirely client-side.*
+
+### 4. Column Mapping
+
+![Column mapping](docs/images/column-mapping.png)
+
+*Confirming and adjusting auto-detected column mappings before continuing.*
+
+### 5. Executive Summary
+
+![Executive Summary](docs/images/executive-summary.png)
+
+*The Business Health strip and plain-English Executive Summary.*
+
+### 6. Dashboard Metrics
+
+![Dashboard metrics](docs/images/dashboard-metrics.png)
+
+*Stat cards for leads, revenue, and data quality.*
+
+### 7. Pipeline Insights
+
+![Pipeline insights](docs/images/pipeline-insights.png)
+
+*Pipeline by Stage and Revenue by Stage charts.*
+
+### 8. Lead Sources & Owners
+
+![Lead sources and owners](docs/images/leads-sources-owners.png)
+
+*Top Lead Sources and Top Owners tables.*
 
 ---
 
