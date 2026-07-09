@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { Dashboard } from "@/components/dashboard/Dashboard";
+import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { LoaderIcon } from "@/components/icons";
 import { detectColumns } from "@/lib/upload/detectColumns";
 import { CsvParseError, parseCsvFile } from "@/lib/upload/parseCsv";
 import type { ColumnMapping, ParsedCsv, UploadStatus } from "@/lib/upload/types";
 import { Dropzone } from "./Dropzone";
 import { MappingScreen } from "./MappingScreen";
-import { UploadSummary } from "./UploadSummary";
 
 export function UploadFlow() {
   const [status, setStatus] = useState<UploadStatus>("idle");
@@ -68,8 +69,15 @@ export function UploadFlow() {
 
   if (status === "confirmed" && parsed && mapping) {
     return (
-      <div className="w-full max-w-3xl">
-        <UploadSummary parsed={parsed} mapping={mapping} onReset={handleReset} />
+      <div className="w-full max-w-6xl">
+        <DashboardHeader
+          fileName={parsed.fileName}
+          rowCount={parsed.rowCount}
+          onReset={handleReset}
+        />
+        <div className="mt-8">
+          <Dashboard rows={parsed.rows} mapping={mapping} />
+        </div>
       </div>
     );
   }
