@@ -24,7 +24,26 @@ Thank you for your interest in contributing. Vouch is built in the open and ever
 
 ## Development Setup
 
-> Development setup instructions will be added here once the project reaches v0.1.
+Requirements: Node.js 20+ and npm.
+
+```bash
+git clone https://github.com/yourvouch/vouch-starter-kit.git
+cd vouch-starter-kit
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000). The upload page has a **"Try with sample data"** button, so you can explore the full dashboard without a CSV of your own.
+
+Before opening a pull request, run all three of these and make sure they pass:
+
+```bash
+npm run test    # unit tests (Vitest)
+npm run lint    # ESLint
+npm run build   # production build + type check
+```
+
+See the [Project Structure](README.md#project-structure) section of the README for an overview of where things live — most application logic lives in `lib/`, and UI in `components/`.
 
 ---
 
@@ -34,7 +53,8 @@ Thank you for your interest in contributing. Vouch is built in the open and ever
 - Keep functions small and focused on a single responsibility
 - Add comments only where the *why* isn't obvious from the code itself
 - Follow the existing style of the file you're editing
-- Write tests for any new behavior you introduce
+- Write tests for any new behavior you introduce, especially pure functions under `lib/`
+- Keep insight calculations deterministic — no AI calls, no fabricated data. If a value can't be computed because a column wasn't mapped, say so clearly instead of guessing
 
 ---
 
