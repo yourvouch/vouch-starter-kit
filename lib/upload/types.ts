@@ -12,6 +12,7 @@ export interface TargetField {
   id: TargetFieldId;
   label: string;
   synonyms: string[];
+  description: string;
 }
 
 export type ColumnMapping = Record<TargetFieldId, string | null>;

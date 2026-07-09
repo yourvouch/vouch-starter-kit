@@ -4,6 +4,8 @@ import type { CsvRow, ParsedCsv } from "./types";
 
 export class CsvParseError extends Error {}
 
+const PROGRESS_REPORT_INTERVAL = 200;
+
 function assertCsvFile(file: File): void {
   if (file.size === 0) {
     throw new CsvParseError("This file is empty. Choose a CSV file with data in it.");
@@ -19,34 +21,52 @@ function assertCsvFile(file: File): void {
   }
 }
 
-export function parseCsvFile(file: File): Promise<ParsedCsv> {
+export function parseCsvFile(
+  file: File,
+  onProgress?: (rowsParsed: number) => void,
+): Promise<ParsedCsv> {
   assertCsvFile(file);
 
   return new Promise((resolve, reject) => {
+    const rows: CsvRow[] = [];
+    let headers: string[] = [];
+    let totalRowCount = 0;
+
     Papa.parse<CsvRow>(file, {
       header: true,
       skipEmptyLines: true,
       worker: true,
-      complete: (results) => {
-        const headers = (results.meta.fields ?? []).filter((field) => field.trim().length > 0);
+      step: (results) => {
+        if (headers.length === 0 && results.meta.fields) {
+          headers = results.meta.fields.filter((field) => field.trim().length > 0);
+        }
 
+        totalRowCount += 1;
+        if (rows.length < MAX_PARSE_ROWS) {
+          rows.push(results.data);
+        }
+
+        if (onProgress && totalRowCount % PROGRESS_REPORT_INTERVAL === 0) {
+          onProgress(totalRowCount);
+        }
+      },
+      complete: () => {
         if (headers.length === 0) {
           reject(new CsvParseError("Couldn't find any column headers in this file."));
           return;
         }
 
-        if (results.data.length === 0) {
+        if (totalRowCount === 0) {
           reject(new CsvParseError("This file doesn't contain any data rows."));
           return;
         }
 
-        const rows = results.data.slice(0, MAX_PARSE_ROWS);
-
+        onProgress?.(totalRowCount);
         resolve({
           fileName: file.name,
           headers,
           rows,
-          rowCount: results.data.length,
+          rowCount: totalRowCount,
         });
       },
       error: (error) => {

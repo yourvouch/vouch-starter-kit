@@ -25,18 +25,23 @@ export function MappingRow({
 
   return (
     <div className="flex flex-col gap-3 border-b border-zinc-200 py-4 last:border-b-0 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-800">
-      <div className="flex items-center gap-2 sm:w-40 sm:flex-none">
-        <label
-          htmlFor={selectId}
-          className="text-sm font-medium text-zinc-900 dark:text-white"
-        >
-          {field.label}
-        </label>
-        {wasAutoDetected && value && (
-          <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
-            Detected
-          </span>
-        )}
+      <div className="sm:w-48 sm:flex-none">
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor={selectId}
+            className="text-sm font-medium text-zinc-900 dark:text-white"
+          >
+            {field.label}
+          </label>
+          {wasAutoDetected && value && (
+            <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
+              Detected
+            </span>
+          )}
+        </div>
+        <p className="mt-0.5 text-xs leading-5 text-zinc-500 dark:text-zinc-500">
+          {field.description}
+        </p>
       </div>
 
       <div className="flex flex-1 flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">

@@ -8,11 +8,14 @@ import { buildBusinessHealth } from "@/lib/insights/buildBusinessHealth";
 import { buildDashboardMetrics } from "@/lib/insights/buildDashboardMetrics";
 import { buildInsightSummary } from "@/lib/insights/buildInsightSummary";
 import { buildTextSummary } from "@/lib/insights/buildTextSummary";
+import { createSampleCsvFile } from "@/lib/sampleData";
 import { detectColumns } from "@/lib/upload/detectColumns";
 import { CsvParseError, parseCsvFile } from "@/lib/upload/parseCsv";
 import type { ColumnMapping, ParsedCsv, UploadStatus } from "@/lib/upload/types";
 import { Dropzone } from "./Dropzone";
 import { MappingScreen } from "./MappingScreen";
+import { OnboardingSteps } from "./OnboardingSteps";
+import { SampleDataActions } from "./SampleDataActions";
 
 export function UploadFlow() {
   const [status, setStatus] = useState<UploadStatus>("idle");
@@ -20,15 +23,17 @@ export function UploadFlow() {
   const [parsed, setParsed] = useState<ParsedCsv | null>(null);
   const [detectedMapping, setDetectedMapping] = useState<ColumnMapping | null>(null);
   const [mapping, setMapping] = useState<ColumnMapping | null>(null);
+  const [rowsParsed, setRowsParsed] = useState(0);
 
   const isParsing = status === "parsing";
 
   async function handleFileSelected(file: File) {
     setError(null);
+    setRowsParsed(0);
     setStatus("parsing");
 
     try {
-      const result = await parseCsvFile(file);
+      const result = await parseCsvFile(file, (count) => setRowsParsed(count));
       const detected = detectColumns(result.headers);
       setParsed(result);
       setDetectedMapping(detected);
@@ -42,6 +47,10 @@ export function UploadFlow() {
       setError(message);
       setStatus("idle");
     }
+  }
+
+  function handleTryDemo() {
+    handleFileSelected(createSampleCsvFile());
   }
 
   function handleMappingChange(fieldId: keyof ColumnMapping, header: string | null) {
@@ -99,15 +108,22 @@ export function UploadFlow() {
 
   return (
     <div className="w-full max-w-2xl">
+      <div className="mb-8">
+        <OnboardingSteps />
+      </div>
       <Dropzone onFileSelected={handleFileSelected} error={error} disabled={isParsing} />
-      {isParsing && (
+      {isParsing ? (
         <div
           role="status"
           className="mt-6 flex items-center justify-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
         >
           <LoaderIcon className="h-4 w-4 animate-spin" aria-hidden="true" />
-          Parsing your file&hellip;
+          {rowsParsed > 0
+            ? `Parsing your file… ${rowsParsed.toLocaleString()} rows read so far`
+            : "Parsing your file…"}
         </div>
+      ) : (
+        <SampleDataActions onTryDemo={handleTryDemo} disabled={isParsing} />
       )}
     </div>
   );

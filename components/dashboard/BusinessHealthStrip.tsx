@@ -3,6 +3,7 @@ import {
   type BusinessHealthItem,
   type HealthStatus,
 } from "@/lib/insights/buildBusinessHealth";
+import { InfoTooltip } from "@/components/ui/InfoTooltip";
 
 const STATUS_DOT_STYLES: Record<HealthStatus, string> = {
   good: "bg-emerald-500",
@@ -16,6 +17,14 @@ const HEALTH_ICONS: Record<string, string> = {
   "Data Completeness": "🗂️",
   "Owner Coverage": "👤",
   "Revenue Visibility": "👁️",
+};
+
+const HEALTH_EXPLANATIONS: Record<string, string> = {
+  "Pipeline Value": "Good when your Revenue column is mapped and totals more than zero.",
+  "Contact Quality": "Good when there are no missing or duplicate emails and phone numbers.",
+  "Data Completeness": "Good when at least 6 of the 8 expected fields are mapped.",
+  "Owner Coverage": "Good when every lead has an assigned owner.",
+  "Revenue Visibility": "Good when revenue can be broken down across pipeline stages.",
 };
 
 interface BusinessHealthStripProps {
@@ -45,9 +54,12 @@ export function BusinessHealthStrip({ items }: BusinessHealthStripProps) {
                 </span>
               </span>
             </div>
-            <p className="mt-3 text-sm font-semibold text-zinc-900 dark:text-white">
-              {item.label}
-            </p>
+            <div className="mt-3 flex items-center gap-1.5">
+              <p className="text-sm font-semibold text-zinc-900 dark:text-white">{item.label}</p>
+              {HEALTH_EXPLANATIONS[item.label] && (
+                <InfoTooltip label={HEALTH_EXPLANATIONS[item.label]} />
+              )}
+            </div>
             <p className="mt-1 truncate text-xs text-zinc-500 dark:text-zinc-400">{item.detail}</p>
           </div>
         );

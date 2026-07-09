@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CheckCircleIcon, ClipboardIcon, DownloadIcon, PrinterIcon, UploadIcon } from "@/components/icons";
 import { ToolbarButton } from "@/components/ui/ToolbarButton";
+import { downloadTextFile } from "@/lib/downloadFile";
 
 interface DashboardActionBarProps {
   fileName: string;
@@ -25,13 +26,7 @@ export function DashboardActionBar({
   const [copied, setCopied] = useState(false);
 
   function handleDownload() {
-    const blob = new Blob([textSummary], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = buildSummaryFileName(fileName);
-    link.click();
-    URL.revokeObjectURL(url);
+    downloadTextFile(buildSummaryFileName(fileName), textSummary);
   }
 
   async function handleCopy() {

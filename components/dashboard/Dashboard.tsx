@@ -70,19 +70,35 @@ export function Dashboard({ metrics, summary, businessHealth }: DashboardProps) 
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <DashboardCard title="Pipeline by Stage" description="Number of leads in each stage">
+        <DashboardCard
+          title="Pipeline by Stage"
+          description="Number of leads in each stage"
+          tooltip="Counts how many leads fall into each stage, using your Stage column."
+        >
           <StageChart data={metrics.pipelineByStage} />
         </DashboardCard>
-        <DashboardCard title="Revenue by Stage" description="Total revenue in each stage">
+        <DashboardCard
+          title="Revenue by Stage"
+          description="Total revenue in each stage"
+          tooltip="Sums the revenue for leads in each stage, using your Revenue and Stage columns."
+        >
           <RevenueChart data={metrics.revenueByStage} />
         </DashboardCard>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <DashboardCard title="Top Lead Sources" description="Where your leads are coming from">
+        <DashboardCard
+          title="Top Lead Sources"
+          description="Where your leads are coming from"
+          tooltip="Ranks lead sources by number of leads, using your Lead Source column."
+        >
           <LeadSourceTable data={metrics.topLeadSources} />
         </DashboardCard>
-        <DashboardCard title="Top Owners" description="Leads and revenue by owner">
+        <DashboardCard
+          title="Top Owners"
+          description="Leads and revenue by owner"
+          tooltip="Ranks owners by number of leads and total revenue, using your Owner column."
+        >
           <OwnerTable data={metrics.topOwners} />
         </DashboardCard>
       </div>
