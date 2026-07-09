@@ -12,6 +12,7 @@ const fullMetrics: DashboardMetrics = {
   },
   missingEmailCount: { available: true, value: 0 },
   missingPhoneCount: { available: true, value: 0 },
+  missingOwnerCount: { available: true, value: 0 },
   duplicateEmailCount: { available: true, value: 0 },
   duplicatePhoneCount: { available: true, value: 0 },
   topLeadSources: { available: true, value: [{ source: "Meta Ads", count: 35 }] },
@@ -20,35 +21,31 @@ const fullMetrics: DashboardMetrics = {
 };
 
 describe("buildInsightSummary", () => {
-  it("builds a plain-English summary sentence when all key metrics are available", () => {
+  it("builds a plain-English executive summary sentence when all key metrics are available", () => {
     const summary = buildInsightSummary(fullMetrics);
 
     expect(summary.summaryText).toBe(
-      "Your CSV has 100 leads worth ₹15,31,50,000 across 12 pipeline stages.",
-    );
-    expect(summary.observations).toContain(
-      "Revenue data is available and shows total pipeline value of ₹15,31,50,000.",
+      "This dataset contains 100 leads with a total pipeline value of ₹15,31,50,000 across 12 sales stages.",
     );
   });
 
-  it("clearly flags an unmapped email column instead of guessing", () => {
+  it("puts healthy metrics under goingWell and flags an unmapped email column under needsAttention", () => {
+    const summary = buildInsightSummary(fullMetrics);
+
+    expect(summary.goingWell).toContain(
+      "Revenue data is available, showing a total pipeline value of ₹15,31,50,000.",
+    );
+    expect(summary.goingWell).toContain("No duplicate phone numbers detected.");
+
     const metrics: DashboardMetrics = {
       ...fullMetrics,
       missingEmailCount: { available: false },
       duplicateEmailCount: { available: false },
     };
-
-    const summary = buildInsightSummary(metrics);
-
-    expect(summary.observations).toContain(
-      "Email data is not available because the email column was not mapped.",
+    const summaryWithUnmappedEmail = buildInsightSummary(metrics);
+    expect(summaryWithUnmappedEmail.needsAttention).toContain(
+      "Email data is unavailable because the Email column was not mapped.",
     );
-  });
-
-  it("reports no duplicate phone numbers when the count is zero", () => {
-    const summary = buildInsightSummary(fullMetrics);
-
-    expect(summary.observations).toContain("No duplicate phone numbers were found.");
   });
 
   it("omits the revenue clause and flags revenue as unavailable when it isn't mapped", () => {
@@ -60,32 +57,53 @@ describe("buildInsightSummary", () => {
 
     const summary = buildInsightSummary(metrics);
 
-    expect(summary.summaryText).toBe("Your CSV has 100 leads across 12 pipeline stages.");
-    expect(summary.observations).toContain(
-      "Revenue data is not available because the revenue column was not mapped.",
+    expect(summary.summaryText).toBe("This dataset contains 100 leads across 12 sales stages.");
+    expect(summary.needsAttention).toContain(
+      "Revenue data is unavailable because the Revenue column was not mapped.",
     );
   });
 
-  it("names the top lead source and top owner in observations", () => {
+  it("names the top lead source and top owner as going-well observations", () => {
     const summary = buildInsightSummary(fullMetrics);
 
-    expect(summary.observations).toContain("Meta Ads is the top lead source with 35 leads.");
-    expect(summary.observations).toContain("Alex is the top owner with 42 leads.");
+    expect(summary.goingWell).toContain("Meta Ads is the top lead source with 35 leads.");
+    expect(summary.goingWell).toContain("Alex is the top owner with 42 leads.");
   });
 
-  it("only recommends cleaning contact details when something is actually missing", () => {
-    const cleanSummary = buildInsightSummary(fullMetrics);
-    expect(cleanSummary.nextActions).not.toContain(
-      "Clean missing contact details before running follow-ups.",
-    );
+  it("promotes exactly one recommendation to Today's Priority and keeps the rest as additional", () => {
+    const summary = buildInsightSummary(fullMetrics);
 
-    const dirtyMetrics: DashboardMetrics = {
-      ...fullMetrics,
-      missingEmailCount: { available: true, value: 3 },
-    };
-    const dirtySummary = buildInsightSummary(dirtyMetrics);
-    expect(dirtySummary.nextActions).toContain(
-      "Clean missing contact details before running follow-ups.",
+    expect(summary.todaysPriority).toBe("Review the highest-value pipeline stages first.");
+    expect(summary.additionalRecommendations).not.toContain(summary.todaysPriority);
+    expect(summary.additionalRecommendations).toContain(
+      "Check the top lead source and compare it with conversion quality.",
     );
+  });
+
+  it("prioritizes capturing missing emails over a healthy pipeline recommendation", () => {
+    const metrics: DashboardMetrics = {
+      ...fullMetrics,
+      missingEmailCount: { available: true, value: 5 },
+    };
+
+    const summary = buildInsightSummary(metrics);
+
+    expect(summary.todaysPriority).toBe("Capture email addresses for future customer communication.");
+  });
+
+  it("falls back to a healthy status message when nothing needs action", () => {
+    const metrics: DashboardMetrics = {
+      ...fullMetrics,
+      revenueByStage: { available: false },
+      topLeadSources: { available: false },
+      topOwners: { available: false },
+    };
+
+    const summary = buildInsightSummary(metrics);
+
+    expect(summary.todaysPriority).toBe(
+      "Your data looks healthy — keep monitoring lead quality and follow-ups.",
+    );
+    expect(summary.additionalRecommendations).toEqual([]);
   });
 });

@@ -36,6 +36,7 @@ export interface DashboardMetrics {
   pipelineByStage: Metric<StageBucket[]>;
   missingEmailCount: Metric<number>;
   missingPhoneCount: Metric<number>;
+  missingOwnerCount: Metric<number>;
   duplicateEmailCount: Metric<number>;
   duplicatePhoneCount: Metric<number>;
   topLeadSources: Metric<LeadSourceBucket[]>;
@@ -45,6 +46,8 @@ export interface DashboardMetrics {
 
 export interface InsightSummary {
   summaryText: string;
-  observations: string[];
-  nextActions: string[];
+  goingWell: string[];
+  needsAttention: string[];
+  todaysPriority: string;
+  additionalRecommendations: string[];
 }

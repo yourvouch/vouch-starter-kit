@@ -43,6 +43,7 @@ describe("buildDashboardMetrics", () => {
     expect(metrics.averageDealValue).toEqual({ available: true, value: 2850 });
     expect(metrics.missingEmailCount).toEqual({ available: true, value: 1 });
     expect(metrics.missingPhoneCount).toEqual({ available: true, value: 0 });
+    expect(metrics.missingOwnerCount).toEqual({ available: true, value: 0 });
     expect(metrics.duplicateEmailCount).toEqual({ available: true, value: 0 });
     expect(metrics.pipelineByStage.available).toBe(true);
     expect(metrics.revenueByStage.available).toBe(true);
@@ -70,6 +71,7 @@ describe("buildDashboardMetrics", () => {
     expect(metrics.pipelineByStage).toEqual({ available: false });
     expect(metrics.missingEmailCount).toEqual({ available: false });
     expect(metrics.missingPhoneCount).toEqual({ available: false });
+    expect(metrics.missingOwnerCount).toEqual({ available: false });
     expect(metrics.duplicateEmailCount).toEqual({ available: false });
     expect(metrics.duplicatePhoneCount).toEqual({ available: false });
     expect(metrics.topLeadSources).toEqual({ available: false });

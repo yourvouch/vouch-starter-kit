@@ -1,7 +1,9 @@
+import { buildBusinessHealth } from "@/lib/insights/buildBusinessHealth";
 import { buildDashboardMetrics } from "@/lib/insights/buildDashboardMetrics";
 import { buildInsightSummary } from "@/lib/insights/buildInsightSummary";
 import { formatCurrency } from "@/lib/insights/format";
 import type { ColumnMapping, CsvRow } from "@/lib/upload/types";
+import { BusinessHealthStrip } from "./BusinessHealthStrip";
 import { DashboardCard } from "./DashboardCard";
 import { InsightSummary } from "./InsightSummary";
 import { LeadSourceTable } from "./LeadSourceTable";
@@ -18,9 +20,11 @@ interface DashboardProps {
 export function Dashboard({ rows, mapping }: DashboardProps) {
   const metrics = buildDashboardMetrics(rows, mapping);
   const summary = buildInsightSummary(metrics);
+  const businessHealth = buildBusinessHealth(metrics, mapping);
 
   return (
     <div className="w-full space-y-8">
+      <BusinessHealthStrip items={businessHealth} />
       <InsightSummary summary={summary} />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

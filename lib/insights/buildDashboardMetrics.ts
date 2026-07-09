@@ -3,6 +3,7 @@ import { getAverageDealValue } from "./metrics/averageDealValue";
 import { getDuplicateEmailCount } from "./metrics/duplicateEmails";
 import { getDuplicatePhoneCount } from "./metrics/duplicatePhones";
 import { getMissingEmailCount } from "./metrics/missingEmailCount";
+import { getMissingOwnerCount } from "./metrics/missingOwnerCount";
 import { getMissingPhoneCount } from "./metrics/missingPhoneCount";
 import { getPipelineByStage, getRevenueByStage } from "./metrics/stageBreakdown";
 import { getTopLeadSources } from "./metrics/topLeadSources";
@@ -19,6 +20,7 @@ export function buildDashboardMetrics(rows: CsvRow[], mapping: ColumnMapping): D
     pipelineByStage: getPipelineByStage(rows, mapping.stage),
     missingEmailCount: getMissingEmailCount(rows, mapping.email),
     missingPhoneCount: getMissingPhoneCount(rows, mapping.phone),
+    missingOwnerCount: getMissingOwnerCount(rows, mapping.owner),
     duplicateEmailCount: getDuplicateEmailCount(rows, mapping.email),
     duplicatePhoneCount: getDuplicatePhoneCount(rows, mapping.phone),
     topLeadSources: getTopLeadSources(rows, mapping.leadSource),
