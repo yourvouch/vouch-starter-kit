@@ -1,7 +1,7 @@
 "use client";
 
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { formatCurrency } from "@/lib/insights/format";
+import { formatCompactCurrency, formatCurrency } from "@/lib/insights/format";
 import { NOT_AVAILABLE_LABEL, type Metric, type StageRevenueBucket } from "@/lib/insights/types";
 import { EmptyMetricState } from "./EmptyMetricState";
 
@@ -29,10 +29,10 @@ export function RevenueChart({ data }: RevenueChartProps) {
             className="text-zinc-500 dark:text-zinc-400"
           />
           <YAxis
-            tickFormatter={(value: number) => formatCurrency(value)}
+            tickFormatter={(value: number) => formatCompactCurrency(value)}
             tick={{ fontSize: 12, fill: "currentColor" }}
             className="text-zinc-500 dark:text-zinc-400"
-            width={72}
+            width={64}
           />
           <Tooltip formatter={(value) => formatCurrency(Number(value))} />
           <Bar dataKey="revenue" name="Revenue" fill="#10b981" radius={[4, 4, 0, 0]} />
