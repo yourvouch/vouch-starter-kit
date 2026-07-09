@@ -197,7 +197,7 @@ See [ROADMAP.md](ROADMAP.md) for the full vision and milestone details.
 
 | Version | Status | Highlights |
 |---------|--------|------------|
-| v0.1 | **In Progress** | CSV upload, column mapping, dashboard, Business Health, Executive Summary, export tools |
+| v0.1 | **Community Preview** | CSV upload, column mapping, dashboard, Business Health, Executive Summary, export tools |
 | v0.2 | Planned | Deeper insight types (lapsed customers, conversion bottlenecks), saved sessions |
 | v1.0 | Community Edition Vision | Stable API, self-hosted deployment guide, plugin system |
 

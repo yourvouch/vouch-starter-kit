@@ -21,7 +21,7 @@ A world where any business — regardless of size or technical resources — can
 
 ## Milestones
 
-### v0.1 — Foundation (In Progress)
+### v0.1 — Foundation (Community Preview)
 
 The first usable version. Focused entirely on making the core workflow work reliably.
 
