@@ -1,8 +1,9 @@
 "use client";
 
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { NO_METRIC_DATA_MESSAGE } from "@/lib/insights/emptyStateMessages";
 import { formatCompactCurrency, formatCurrency } from "@/lib/insights/format";
-import { NOT_AVAILABLE_LABEL, type Metric, type StageRevenueBucket } from "@/lib/insights/types";
+import type { Metric, StageRevenueBucket } from "@/lib/insights/types";
 import { EmptyMetricState } from "./EmptyMetricState";
 
 interface RevenueChartProps {
@@ -11,11 +12,11 @@ interface RevenueChartProps {
 
 export function RevenueChart({ data }: RevenueChartProps) {
   if (!data.available) {
-    return <EmptyMetricState message={NOT_AVAILABLE_LABEL} />;
+    return <EmptyMetricState message="Revenue or Stage column was not mapped" />;
   }
 
   if (data.value.length === 0) {
-    return <EmptyMetricState message="No revenue data found" />;
+    return <EmptyMetricState message={NO_METRIC_DATA_MESSAGE} />;
   }
 
   return (

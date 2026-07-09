@@ -6,6 +6,12 @@ import type { DashboardMetrics } from "./types";
 
 export type HealthStatus = "good" | "attention" | "unavailable";
 
+export const HEALTH_STATUS_LABELS: Record<HealthStatus, string> = {
+  good: "Good",
+  attention: "Needs Attention",
+  unavailable: "Not Available",
+};
+
 export interface BusinessHealthItem {
   label: string;
   status: HealthStatus;

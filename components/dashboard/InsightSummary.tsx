@@ -6,7 +6,7 @@ interface InsightSummaryProps {
 
 export function InsightSummary({ summary }: InsightSummaryProps) {
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-6 sm:p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
+    <div className="rounded-xl border border-zinc-200 bg-white p-6 print:break-inside-avoid sm:p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
       <h2 className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
         Executive Summary
       </h2>

@@ -1,3 +1,4 @@
+import { columnNotMappedMessage, NO_METRIC_DATA_MESSAGE } from "@/lib/insights/emptyStateMessages";
 import { formatCurrency, formatNumber } from "@/lib/insights/format";
 import { NOT_AVAILABLE_LABEL, type Metric, type OwnerBucket } from "@/lib/insights/types";
 import { EmptyMetricState } from "./EmptyMetricState";
@@ -8,11 +9,11 @@ interface OwnerTableProps {
 
 export function OwnerTable({ data }: OwnerTableProps) {
   if (!data.available) {
-    return <EmptyMetricState message={NOT_AVAILABLE_LABEL} />;
+    return <EmptyMetricState message={columnNotMappedMessage("Owner")} />;
   }
 
   if (data.value.length === 0) {
-    return <EmptyMetricState message="No owner data found" />;
+    return <EmptyMetricState message={NO_METRIC_DATA_MESSAGE} />;
   }
 
   return (

@@ -34,7 +34,7 @@ const footerColumns: { title: string; links: FooterLink[] }[] = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-zinc-200 dark:border-zinc-800">
+    <footer className="border-t border-zinc-200 print:hidden dark:border-zinc-800">
       <Container className="py-16">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
           <div className="col-span-2 sm:col-span-1">

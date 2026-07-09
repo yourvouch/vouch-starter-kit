@@ -1,5 +1,6 @@
+import { columnNotMappedMessage, NO_METRIC_DATA_MESSAGE } from "@/lib/insights/emptyStateMessages";
 import { formatNumber } from "@/lib/insights/format";
-import { NOT_AVAILABLE_LABEL, type LeadSourceBucket, type Metric } from "@/lib/insights/types";
+import type { LeadSourceBucket, Metric } from "@/lib/insights/types";
 import { EmptyMetricState } from "./EmptyMetricState";
 
 interface LeadSourceTableProps {
@@ -8,11 +9,11 @@ interface LeadSourceTableProps {
 
 export function LeadSourceTable({ data }: LeadSourceTableProps) {
   if (!data.available) {
-    return <EmptyMetricState message={NOT_AVAILABLE_LABEL} />;
+    return <EmptyMetricState message={columnNotMappedMessage("Lead Source")} />;
   }
 
   if (data.value.length === 0) {
-    return <EmptyMetricState message="No lead source data found" />;
+    return <EmptyMetricState message={NO_METRIC_DATA_MESSAGE} />;
   }
 
   return (
