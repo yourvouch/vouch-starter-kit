@@ -143,7 +143,7 @@ What Vouch does **not** do (by design, for now): authentication, a database, pay
 
 ### 8. Lead Sources & Owners
 
-![Lead sources and owners](docs/images/leads-sources-owners.png)
+![Lead sources and owners](docs/images/lead-sources-owners.png)
 
 *Top Lead Sources and Top Owners tables.*
 
