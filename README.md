@@ -1,6 +1,6 @@
 # Vouch Starter Kit
 
-**Find missed revenue opportunities from the data you already have — upload a CSV, get a dashboard in seconds.**
+**Understand where your leads slow down, where revenue is at risk, and what actions to take next — using the data you already have.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -12,6 +12,27 @@
 ![Dashboard overview](docs/images/dashboard-overview.png)
 
 *The full Vouch dashboard — Business Health, Executive Summary, charts, and tables, generated entirely in your browser.*
+
+---
+
+## What is this?
+
+Vouch Starter Kit is a simple tool that helps you understand your business data in minutes.
+
+Upload a CSV file (from your CRM, leads sheet, or sales report), and Vouch shows:
+- which leads need follow-up
+- where your pipeline is slowing down
+- what actions to take next
+
+No setup, no integrations, no analytics tools required.
+
+---
+
+## Try it instantly
+
+👉 https://demo.yourvouch.com
+
+No signup required. Try with sample data in seconds.
 
 ---
 
@@ -32,7 +53,7 @@ Open [http://localhost:3000](http://localhost:3000), go to **Upload your CSV**, 
 
 ## What is Vouch?
 
-Vouch is an open-source tool that turns a CSV export — a sales pipeline, a customer list, a leads report — into a clear, actionable dashboard. Drop in a file, confirm how your columns map, and see where money is being left on the table. No data warehouse, no expensive consultants, no lock-in.
+Vouch Starter Kit is a simple tool that turns a CSV export — a sales pipeline, a customer list, a leads report — into a clear, actionable dashboard. Drop in a file, confirm how your columns map, and see where money is being left on the table. No data warehouse, no expensive consultants, no lock-in. It's open source, so you can read exactly how it works or self-host it yourself.
 
 ### Why Vouch exists
 
@@ -237,6 +258,14 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started, and [PRODUCT-SPEC.md](PR
 - **Code of Conduct** — see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 - **Security** — see [SECURITY.md](SECURITY.md) for responsible disclosure
 - **Changelog** — see [CHANGELOG.md](CHANGELOG.md) for what's shipped so far
+
+---
+
+## Note
+
+This repository contains selected modules from Vouch.
+
+The full Vouch platform includes additional capabilities and is not fully open source.
 
 ---
 
