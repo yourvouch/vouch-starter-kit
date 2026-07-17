@@ -1,42 +1,122 @@
-# Vouch Starter Kit
+# Vouch Starter Kit 2.0
 
-**Understand where your leads slow down, where revenue is at risk, and what actions to take next — using the data you already have.**
+**An open-source, privacy-first Founder Decision Review.**
 
+Upload CSV or Excel data. Understand what deserves attention. Create actions. Save the review. Compare the next review. Observe what changed.
+
+> **Status:** Vouch Starter Kit 2.0 Preview — available for external review, not yet described as a final stable release.
+
+[![Live Starter Kit](https://img.shields.io/badge/Live-Starter%20Kit-006b4f)](https://silly-selkie-ec5eda.netlify.app/)
+[![Vouch website](https://img.shields.io/badge/Vouch-Website-123b32)](https://yourvouch.com/)
+[![Full product demo](https://img.shields.io/badge/Full%20product-Demo-e66a2c)](https://demo.yourvouch.com/)
+[![GitHub Issues](https://img.shields.io/badge/GitHub-Issues-24292f)](https://github.com/yourvouch/vouch-starter-kit/issues)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-000000.svg)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6.svg)](https://www.typescriptlang.org)
 
-**Dashboard Overview**
+| Destination | Role |
+|---|---|
+| [Live Starter Kit](https://silly-selkie-ec5eda.netlify.app/) | Hosted preview of this open-source repository |
+| [yourvouch.com](https://yourvouch.com/) | Website for the commercial Vouch product |
+| [demo.yourvouch.com](https://demo.yourvouch.com/) | Richer demonstration of the full product experience |
+| [GitHub Issues](https://github.com/yourvouch/vouch-starter-kit/issues) | Bugs, questions, and feature requests for the Starter Kit |
 
-![Dashboard overview](docs/images/dashboard-overview.png)
+The Netlify preview is the hosted Starter Kit, not the main commercial Vouch website.
 
-*The full Vouch dashboard — Business Health, Executive Summary, charts, and tables, generated entirely in your browser.*
+![Vouch Starter Kit landing page with the Founder Decision Review introduction](docs/images/v2/landing-page.png)
 
----
+*The open-source Starter Kit begins with a local, no-signup path from business data to priorities and actions.*
 
-## What is this?
+## What this repository is
 
-Vouch Starter Kit is a simple tool that helps you understand your business data in minutes.
+This repository contains the open-source **Vouch Starter Kit**. It is separate from the fuller commercial Vouch product experience presented on [yourvouch.com](https://yourvouch.com/) and [demo.yourvouch.com](https://demo.yourvouch.com/).
 
-Upload a CSV file (from your CRM, leads sheet, or sales report), and Vouch shows:
-- which leads need follow-up
-- where your pipeline is slowing down
-- what actions to take next
+The Starter Kit runs in a modern browser. Uploaded CSV and XLSX files are processed locally: no signup, backend, compulsory AI, or cloud data upload is required. Its deterministic rules are readable, testable, and do not require an AI API.
 
-No setup, no integrations, no analytics tools required.
+## Product loop
 
----
+```text
+Choose business type
+→ Upload CSV/XLSX or try a sample
+→ Confirm mapping
+→ Confirm stages and identity
+→ Generate Founder Decision Review
+→ Save workspace
+→ Create actions
+→ Add a later review
+→ Compare changes
+→ Observe outcomes
+```
 
-## Try it instantly
+Every screen is designed to answer one question: **What deserves my attention?**
 
-👉 https://demo.yourvouch.com
+## Current capabilities
 
-No signup required. Try with sample data in seconds.
+### Four vertical packs
 
----
+- General sales
+- Interior design and architecture
+- Agency and consulting
+- SaaS
 
-## Quick Start
+Each pack provides its own fields, samples, stage semantics, and deterministic intelligence rules.
+
+### Import and review
+
+- Local CSV and modern XLSX import
+- Pack-aware automatic mapping and editable field mapping
+- Required, recommended, and optional field readiness
+- Explicit stage semantics and opportunity identity strategies
+- Explainable deterministic attention scoring with evidence and confidence
+- Founder Decision Review with priorities and recommended next steps
+- Conservative, explainable value-at-risk calculations
+
+### Persistent workspaces and comparison
+
+- IndexedDB workspaces stored in the current browser profile
+- Immutable saved review snapshots and dated review history
+- Previous-versus-current comparison with matching strategy and confidence
+- Progressed, regressed, stalled, won, lost, reopened, new, and removed movements
+- Aggregate metric and risk movement, with unresolved matches excluded visibly
+
+### Actions, outcomes, and portability
+
+- Persistent Action Centre with linked and manual actions
+- Action lifecycle, owners, due dates, filters, sorting, carry-forward, and duplicate prevention
+- Measured outcomes from later saved reviews, retaining previous/current evidence and matching confidence
+- Versioned JSON backup, import preview, merge, and confirmed replace
+- Action Centre CSV export and print-friendly reviews
+- Responsive desktop and mobile layouts
+
+## Founder Decision Review
+
+![Saved Founder Decision Review showing conservative value at risk and explainable founder priorities](docs/images/v2/founder-decision-review.png)
+
+*A saved, immutable review shows priorities, supporting evidence, confidence, and the calculation behind value at risk.*
+
+## Review comparison
+
+![Comparison of two eligible saved reviews with metric deltas and opportunity movements](docs/images/v2/review-comparison.png)
+
+*Eligible snapshots are matched without mutation or rescoring, with previous/current metrics, risk movement, and opportunity-level changes.*
+
+## Action Centre
+
+![Persistent Action Centre with recommended, in-progress, completed, and measured actions](docs/images/v2/action-centre.png)
+
+*Actions stay linked to their source review and opportunity; later reviews can produce measured outcomes using explicit non-causal language.*
+
+## Privacy and trust
+
+- Uploaded CSV/XLSX binaries are parsed locally and are **not stored**.
+- Parsed review data can be stored locally in IndexedDB when a review is saved.
+- Saved workspaces remain in that browser profile; there are no accounts or cloud sync.
+- Users can export a versioned JSON backup, import data, delete a workspace, or clear all local data.
+- Credentials, tokens, secrets, and uploaded source files are not included in backups.
+- Deterministic outputs do not require an AI API.
+- Vouch reports associated outcomes but does not claim that an action caused a result.
+
+## Quick start
+
+Requirements: **Node.js 20+**, npm, and a modern browser with IndexedDB support.
 
 ```bash
 git clone https://github.com/yourvouch/vouch-starter-kit.git
@@ -45,229 +125,63 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000), go to **Upload your CSV**, and click **Try with sample data** — no file of your own required.
+Open [http://localhost:3000](http://localhost:3000), select a business type, and upload a CSV/XLSX file or use the selected pack's sample.
 
-**Requirements:** Node.js 20+ and npm.
+## Architecture
 
----
+```text
+app/
+  page.tsx                         Landing page
+  review/                          Six-step review workflow
+  workspaces/                      Workspace list and persisted workspace routes
+  workspaces/[id]/                 Latest review, history, comparison, actions, settings
+  actions/                         Cross-workspace Action Centre
+  local-data/                      Backup, import, and clear-local-data tools
 
-## What is Vouch?
+components/v2/
+  Landing, ReviewFlow, WorkspaceHome, ReviewHistory,
+  CompareReviews, ActionCentre, WorkspaceSettings, and shared navigation
 
-Vouch Starter Kit is a simple tool that turns a CSV export — a sales pipeline, a customer list, a leads report — into a clear, actionable dashboard. Drop in a file, confirm how your columns map, and see where money is being left on the table. No data warehouse, no expensive consultants, no lock-in. It's open source, so you can read exactly how it works or self-host it yourself.
-
-### Why Vouch exists
-
-Most businesses are sitting on data that could tell them exactly where they're losing revenue. The problem isn't that the data doesn't exist — it's that making sense of it requires tools that are either too expensive, too complex, or too opaque to trust.
-
-Vouch is built on a simple belief: **insights from your own data should be accessible to everyone**, not just companies with dedicated analytics teams.
-
-### What problem it solves
-
-- You have CSVs, exports, and reports — but no easy way to act on them
-- Revenue leaks hide in plain sight: missing contact details, duplicate leads, unassigned owners, stalled pipeline stages
-- Existing BI tools are powerful but require setup, training, and ongoing cost
-- You want answers in minutes, not dashboards that take weeks to configure
-
-Vouch bridges that gap. Drop in your data, get actionable insights fast — entirely in your browser.
-
----
-
-## What happens after uploading a CSV?
-
-```
-Upload CSV
-    │
-    ▼
-Auto-detect columns
-    │
-    ▼
-Confirm mapping
-    │
-    ▼
-Business Health
-    │
-    ▼
-Executive Summary
-    │
-    ▼
-Charts
-    │
-    ▼
-Recommendations
-    │
-    ▼
-Export / Copy / Print
+lib/v2/
+  domain.ts                        Core types and immutable snapshot model
+  packs.ts                         Vertical fields, stages, samples, and rules
+  mapping.ts                       Detection, editable mapping, and readiness
+  intelligence.ts                 Explainable scoring and value-at-risk logic
+  comparison.ts                   Eligibility, matching, movements, and deltas
+  actions.ts                      Actions, transitions, outcomes, and exports
+  storage.ts                      Versioned IndexedDB persistence and backups
+  reviews.ts                      Normalized saved-review construction
+  xlsx.ts                         Dependency-free ZIP/XML XLSX parser
+  *.test.ts                       Deterministic Vitest coverage
 ```
 
-Every step above runs client-side. Your CSV is never uploaded to a server — Vouch parses and analyzes it directly in your browser tab.
+The application uses Next.js App Router, React, TypeScript, and browser-native IndexedDB. CSV parsing uses PapaParse; the XLSX reader is implemented locally without an Excel parsing dependency.
 
----
+## Development
 
-## Current Features
-
-Everything below exists in the codebase today — nothing here is aspirational.
-
-- **CSV upload** — drag-and-drop or click to browse, parsed entirely client-side with PapaParse (up to 50,000 rows), with live row-count progress on larger files
-- **Automatic column detection** for 8 common fields — Name, Email, Phone, Revenue, Stage, Owner, Lead Source, Date — with an editable confirmation screen and a short explanation of what each field is used for
-- **Bundled sample dataset** and a **"Try with sample data"** action, so you can explore the full dashboard without a file of your own
-- **Business Health strip** — five at-a-glance status cards (Pipeline Value, Contact Quality, Data Completeness, Owner Coverage, Revenue Visibility), each derived from your actual data
-- **Executive Summary** — a plain-English summary sentence, "What's Going Well" and "Needs Attention" observations, one prioritized "Today's Priority" action, and additional recommendations — all generated deterministically from your data, with no AI calls
-- **Dashboard stat cards** — Total Leads, Total Revenue, Average Deal Value, Missing Email, Missing Phone, Duplicate Emails, Duplicate Phones — each with contextual helper text
-- **Charts** — Pipeline by Stage and Revenue by Stage (via Recharts)
-- **Tables** — Top Lead Sources and Top Owners
-- **India-first currency formatting** — ₹ and Indian digit grouping (e.g. `₹15,31,50,000`), with compact lakh/crore notation on chart axes
-- **Export tools** — download the summary as a `.txt` file, copy it to the clipboard, or print a clean, browser-friendly report
-- **Clear empty states** — when a column isn't mapped, Vouch says exactly why (e.g. "Email column was not mapped") instead of showing a generic error
-- **Landing page** describing the product, with a direct path into the upload flow
-
-What Vouch does **not** do (by design, for now): authentication, a database, payments, AI-generated insights, CRM integrations, or cloud hosting. See [Roadmap](#roadmap).
-
----
-
-## Screenshots
-
-### 2. Landing Page
-
-![Landing page](docs/images/landing-page.png)
-
-*The Vouch landing page, describing the product and linking into the upload flow.*
-
-### 3. Upload CSV
-
-![Upload CSV](docs/images/upload-csv.png)
-
-*Drag-and-drop CSV upload, parsed entirely client-side.*
-
-### 4. Column Mapping
-
-![Column mapping](docs/images/column-mapping.png)
-
-*Confirming and adjusting auto-detected column mappings before continuing.*
-
-### 5. Executive Summary
-
-![Executive Summary](docs/images/executive-summary.png)
-
-*The Business Health strip and plain-English Executive Summary.*
-
-### 6. Dashboard Metrics
-
-![Dashboard metrics](docs/images/dashboard-metrics.png)
-
-*Stat cards for leads, revenue, and data quality.*
-
-### 7. Pipeline Insights
-
-![Pipeline insights](docs/images/pipeline-insights.png)
-
-*Pipeline by Stage and Revenue by Stage charts.*
-
-### 8. Lead Sources & Owners
-
-![Lead sources and owners](docs/images/lead-sources-owners.png)
-
-*Top Lead Sources and Top Owners tables.*
-
----
-
-## Sample datasets
-
-Vouch includes a bundled sample dataset (`lib/sampleData.ts`) — 30 rows of realistic CRM-style data with a few intentional data-quality issues (missing emails and phone numbers, a duplicate contact, an unassigned lead), so the dashboard has something meaningful to show right away.
-
-On the upload page, click **"Try with sample data"** to load it directly, or **"Download sample CSV"** to save it and upload it yourself.
-
----
-
-## Tech Stack
-
-- [Next.js 16](https://nextjs.org) (App Router, Turbopack)
-- [React 19](https://react.dev)
-- [TypeScript](https://www.typescriptlang.org) (strict mode)
-- [Tailwind CSS v4](https://tailwindcss.com)
-- [Recharts](https://recharts.org) for charts
-- [PapaParse](https://www.papaparse.com) for client-side CSV parsing
-- [Vitest](https://vitest.dev) for unit tests
-- [ESLint](https://eslint.org) for linting
-
-No backend, no database, no external API calls.
-
----
-
-## Project Structure
-
-```
-vouch-starter-kit/
-├── app/                  Next.js App Router pages (landing page, /upload)
-├── components/
-│   ├── dashboard/        Dashboard UI — stat cards, charts, tables, Executive Summary
-│   ├── upload/           Upload flow UI — dropzone, column mapping, onboarding
-│   └── ui/               Small reusable primitives (buttons, tooltips, containers)
-├── lib/
-│   ├── insights/         Pure functions that compute dashboard metrics and summaries
-│   ├── upload/           CSV parsing, column detection, and shared upload types
-│   └── sampleData.ts     Bundled demo dataset used by "Try with sample data"
-├── public/               Static assets
-└── docs/                 Documentation assets (e.g. screenshots)
+```bash
+npm test
+npm run lint
+npx tsc --noEmit
+npm run build
 ```
 
----
+Tests cover the domain model, vertical packs, mapping, XLSX safety, IndexedDB CRUD and migrations, immutable snapshots, comparisons, actions, measured outcomes, backup/import, exports, and persistent workflows.
 
-## Roadmap
+## Current limitations
 
-See [ROADMAP.md](ROADMAP.md) for the full vision and milestone details.
+- No accounts
+- No cloud sync
+- No CRM write-back
+- No email notifications
+- No billing
+- Local data is specific to a browser profile and origin
+- JSON export/import is required to move workspaces between browsers
+- Output quality and available insights depend on the quality and mapping of source data
 
-| Version | Status | Highlights |
-|---------|--------|------------|
-| v0.1 | **Community Preview** | CSV upload, column mapping, dashboard, Business Health, Executive Summary, export tools |
-| v0.2 | Planned | Deeper insight types (lapsed customers, conversion bottlenecks), saved sessions |
-| v1.0 | Community Edition Vision | Stable API, self-hosted deployment guide, plugin system |
+## Contributing and support
 
----
-
-## Who is this for?
-
-- **Small business owners** who want to understand their sales data without hiring analysts
-- **Operators and revenue teams** looking for quick wins in their existing reports
-- **Developers** who want to build on a solid open-source foundation
-- **Consultants** who want a tool they can customize and self-host for clients
-
----
-
-## Community Edition philosophy
-
-Vouch Starter Kit is, and will remain, free and open source under the MIT license. It's built to be:
-
-- **Simple first** — works from a single file upload, no infrastructure required
-- **Transparent** — every number on the dashboard traces back to a plain function you can read
-- **Trustworthy** — your data stays in your browser; nothing is sent anywhere without your consent
-- **Focused** — does one thing well: finds what deserves your attention in the data you already have
-
----
-
-## Contributing
-
-Vouch is built in the open and welcomes contributions of all kinds — code, documentation, design, testing, and ideas.
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started, and [PRODUCT-SPEC.md](PRODUCT-SPEC.md) to understand the full product vision.
-
----
-
-## Community
-
-- **Issues & discussions** — use [GitHub Issues](../../issues) for bugs, questions, and feature requests
-- **Code of Conduct** — see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- **Security** — see [SECURITY.md](SECURITY.md) for responsible disclosure
-- **Changelog** — see [CHANGELOG.md](CHANGELOG.md) for what's shipped so far
-
----
-
-## Note
-
-This repository contains selected modules from Vouch.
-
-The full Vouch platform includes additional capabilities and is not fully open source.
-
----
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md), follow the [Code of Conduct](CODE_OF_CONDUCT.md), report security issues as described in [SECURITY.md](SECURITY.md), and use [GitHub Issues](https://github.com/yourvouch/vouch-starter-kit/issues) for product feedback.
 
 ## License
 
