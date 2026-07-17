@@ -1,22 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Vouch — Find the revenue hiding in your data",
-  description:
-    "Vouch is an open-source tool that turns the CSVs and exports you already have into clear, actionable revenue insights.",
-};
+export const metadata: Metadata = { title: "Vouch — Founder Decision Review", description: "Turn your business data into clear priorities and actions, entirely inside your browser." };
 
 export default function RootLayout({
   children,
@@ -24,10 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased">
       <body className="flex min-h-full flex-col font-sans">
         <a
           href="#main-content"
