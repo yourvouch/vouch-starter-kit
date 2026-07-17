@@ -6,7 +6,7 @@ Upload CSV or Excel data. Understand what deserves attention. Create actions. Sa
 
 > **Status:** Vouch Starter Kit 2.0 Preview — available for external review, not yet described as a final stable release.
 
-[![Live Starter Kit](https://img.shields.io/badge/Live-Starter%20Kit-006b4f)](https://silly-selkie-ec5eda.netlify.app/)
+[![Live Starter Kit](https://img.shields.io/badge/Live-Starter%20Kit-006b4f)](https://vouchstarterkit.netlify.app/)
 [![Vouch website](https://img.shields.io/badge/Vouch-Website-123b32)](https://yourvouch.com/)
 [![Full product demo](https://img.shields.io/badge/Full%20product-Demo-e66a2c)](https://demo.yourvouch.com/)
 [![GitHub Issues](https://img.shields.io/badge/GitHub-Issues-24292f)](https://github.com/yourvouch/vouch-starter-kit/issues)
@@ -14,7 +14,7 @@ Upload CSV or Excel data. Understand what deserves attention. Create actions. Sa
 
 | Destination | Role |
 |---|---|
-| [Live Starter Kit](https://silly-selkie-ec5eda.netlify.app/) | Hosted preview of this open-source repository |
+| [Live Starter Kit](https://vouchstarterkit.netlify.app/) | Hosted preview of this open-source repository |
 | [yourvouch.com](https://yourvouch.com/) | Website for the commercial Vouch product |
 | [demo.yourvouch.com](https://demo.yourvouch.com/) | Richer demonstration of the full product experience |
 | [GitHub Issues](https://github.com/yourvouch/vouch-starter-kit/issues) | Bugs, questions, and feature requests for the Starter Kit |
