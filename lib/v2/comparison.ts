@@ -34,7 +34,7 @@ export function comparisonEligibility(previous: ReviewSnapshot | undefined, curr
   if (previous && current && previous.id === current.id) failures.push("Previous and current reviews must be different.");
   if (previous && current && previous.workspaceId !== current.workspaceId) failures.push("Reviews must belong to the same workspace.");
   if (previous && current && previous.packId !== current.packId) failures.push("Reviews must use the same vertical pack.");
-  if (previous && current && previous.reviewDate >= current.reviewDate) failures.push("The previous review date must be earlier than the current review date.");
+  if (previous && current && (previous.reviewDate > current.reviewDate || previous.reviewDate === current.reviewDate && previous.createdAt >= current.createdAt)) failures.push("The previous review must be earlier by review date or saved-snapshot creation order.");
   return { eligible: failures.length === 0, failures };
 }
 

@@ -38,7 +38,7 @@ export function ReviewFlow() {
       const actions = await listActions(selectedWorkspace.id);
       for (const action of actions.filter((item) => item.opportunityIds.length && item.reviewId !== snapshot.id)) {
         const origin = previousReviews.find((item) => item.id === action.reviewId);
-        if (origin && origin.reviewDate < snapshot.reviewDate) await put("actions", measureAction(action, origin, snapshot, pack));
+        if (origin && (origin.reviewDate < snapshot.reviewDate || origin.reviewDate === snapshot.reviewDate && origin.createdAt < snapshot.createdAt)) await put("actions", measureAction(action, origin, snapshot, pack));
       }
       router.push(`/workspaces/${selectedWorkspace.id}`);
     } catch (reason) { setError(reason instanceof Error ? reason.message : "The review could not be saved."); setSaving(false); }
