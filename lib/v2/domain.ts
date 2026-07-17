@@ -68,6 +68,8 @@ export interface Assessment {
   unavailableChecks: string[];
   recommendedNextStep: string;
   valueAtRisk?: number;
+  valueAtRiskFactor?: number;
+  riskBasis?: string[];
   excludedReason?: string;
 }
 

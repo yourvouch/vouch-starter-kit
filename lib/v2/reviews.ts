@@ -13,10 +13,15 @@ const valueFor = (row: Record<string, string>, mappings: MappingSuggestion[], fi
 export function buildReviewSnapshot(input: { workspaceId: string; packId: PackId; reviewDate: string; readiness: ReviewSnapshot["readiness"]; rows: Record<string, string>[]; mappings: MappingSuggestion[]; id?: string; createdAt?: string }) {
   const pack = verticalPacks[input.packId];
   const opportunities = input.rows.map((row, index) => {
+    const company = normalizeText(valueFor(row, input.mappings, "company")) || undefined;
+    const explicitName = normalizeText(valueFor(row, input.mappings, "name")) || undefined;
+    const projectType = normalizeText(valueFor(row, input.mappings, "projectType")) || undefined;
+    const location = normalizeText(valueFor(row, input.mappings, "location")) || undefined;
+    const displayName = pack.id === "interiors" ? explicitName ?? (projectType && location ? `${projectType} · ${location}` : company && projectType ? `${company} · ${projectType}` : company) : explicitName;
     const base: Partial<Opportunity> = {
       explicitId: valueFor(row, input.mappings, "opportunityId"),
-      name: normalizeText(valueFor(row, input.mappings, "name")) || `Opportunity ${index + 1}`,
-      company: normalizeText(valueFor(row, input.mappings, "company")) || undefined,
+      name: displayName || `Opportunity ${index + 1}`,
+      company,
       email: normalizeEmail(valueFor(row, input.mappings, "email")),
       phone: normalizePhone(valueFor(row, input.mappings, "phone")),
       value: normalizeMoney(valueFor(row, input.mappings, "value")),
@@ -31,7 +36,7 @@ export function buildReviewSnapshot(input: { workspaceId: string; packId: PackId
       expectedClose: normalizeDate(valueFor(row, input.mappings, "expectedClose")),
     };
     const mappedColumns = new Set(input.mappings.map((item) => item.column).filter(Boolean));
-    const vertical = Object.fromEntries(Object.entries(row).filter(([header]) => !mappedColumns.has(header)).map(([header, value]) => [cleanHeader(header), value]));
+    const vertical = { ...Object.fromEntries(Object.entries(row).filter(([header]) => !mappedColumns.has(header)).map(([header, value]) => [cleanHeader(header), value])), projectType, location, siteVisit: normalizeDate(valueFor(row, input.mappings, "siteVisit")), startDate: normalizeDate(valueFor(row, input.mappings, "startDate")), clientName: company };
     return { ...base, id: identityFor(base).id, lifecycle: lifecycleFor(base.stage, base.status, pack), vertical, sourceRow: index + 2 } as Opportunity;
   });
   return {
