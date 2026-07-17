@@ -1,0 +1,15 @@
+import type { PackId, ReviewSnapshot } from "./domain";
+import type { VouchAction } from "./actions";
+export const SCHEMA_VERSION = 1;
+export interface Workspace { id: string; name: string; packId: PackId; createdAt: string; updatedAt: string; mapping?: Record<string, string>; preferences?: Record<string, string | boolean> }
+export interface Backup { schemaVersion: number; exportedAt: string; workspaces: Workspace[]; reviews: ReviewSnapshot[]; actions: VouchAction[] }
+const DB_NAME = "vouch-starter-kit";
+const STORES = ["workspaces", "reviews", "actions"] as const;
+const openDb = () => new Promise<IDBDatabase>((resolve, reject) => { const request = indexedDB.open(DB_NAME, SCHEMA_VERSION); request.onupgradeneeded = () => { const db = request.result; for (const store of STORES) if (!db.objectStoreNames.contains(store)) db.createObjectStore(store, { keyPath: "id" }); }; request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); });
+const request = <T>(value: IDBRequest<T>) => new Promise<T>((resolve, reject) => { value.onsuccess = () => resolve(value.result); value.onerror = () => reject(value.error); });
+export async function put<T extends { id: string }>(store: typeof STORES[number], value: T) { const db = await openDb(); await request(db.transaction(store, "readwrite").objectStore(store).put(structuredClone(value))); db.close(); }
+export async function all<T>(store: typeof STORES[number]) { const db = await openDb(); const result = await request(db.transaction(store).objectStore(store).getAll()) as T[]; db.close(); return result; }
+export async function deleteWorkspace(id: string) { const db = await openDb(); const tx = db.transaction(STORES, "readwrite"); tx.objectStore("workspaces").delete(id); for (const store of ["reviews", "actions"] as const) { const values = await request(tx.objectStore(store).getAll()) as { id: string; workspaceId: string }[]; for (const value of values) if (value.workspaceId === id) tx.objectStore(store).delete(value.id); } await new Promise<void>((resolve, reject) => { tx.oncomplete = () => resolve(); tx.onerror = () => reject(tx.error); }); db.close(); }
+export async function clearAll() { const db = await openDb(); const tx = db.transaction(STORES, "readwrite"); for (const store of STORES) tx.objectStore(store).clear(); await new Promise<void>((resolve) => { tx.oncomplete = () => resolve(); }); db.close(); }
+export async function exportBackup(): Promise<Backup> { return { schemaVersion: SCHEMA_VERSION, exportedAt: new Date().toISOString(), workspaces: await all("workspaces"), reviews: await all("reviews"), actions: await all("actions") }; }
+export async function importBackup(backup: Backup, mode: "merge" | "replace") { if (backup.schemaVersion > SCHEMA_VERSION) throw new Error("This backup was created by a newer Vouch schema and cannot be imported safely."); if (mode === "replace") await clearAll(); for (const item of backup.workspaces) await put("workspaces", item); for (const item of backup.reviews) await put("reviews", item); for (const item of backup.actions) await put("actions", item); }
