@@ -24,3 +24,22 @@ export function mappingReadiness(suggestions: MappingSuggestion[]) {
   const missingRecommended = suggestions.filter((item) => item.importance === "recommended" && !item.column);
   return missingRequired.length ? "missing-essential" as const : missingRecommended.length > 2 ? "reduced" as const : "full" as const;
 }
+
+export function updateMapping(suggestions: MappingSuggestion[], field: CanonicalField, column: string | undefined, rows: Record<string, unknown>[]) {
+  return suggestions.map((item) => {
+    if (item.field === field) {
+      const unchanged = column === item.column;
+      return {
+        ...item,
+        column,
+        confidence: column ? (unchanged ? item.confidence : 0) : 0,
+        explanation: column ? (unchanged ? item.explanation : "Manually selected by the user") : "Manually left unmapped",
+        samples: column ? rows.slice(0, 3).map((row) => normalizeText(row[column])).filter(Boolean) : [],
+      };
+    }
+    if (column && item.column === column) return { ...item, column: undefined, confidence: 0, explanation: `Unmapped because ${column} is now assigned to another field`, samples: [] };
+    return item;
+  });
+}
+
+export const missingFields = (suggestions: MappingSuggestion[], importance: FieldImportance) => suggestions.filter((item) => item.importance === importance && !item.column).map((item) => item.field);
