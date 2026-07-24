@@ -8,7 +8,7 @@ const BUSINESS_RISK_FACTORS: Record<string, number> = { "overdue-follow-up": .35
 export function assessOpportunity(opportunity: Opportunity, reviewDate: string, pack: VerticalPack): Assessment {
   if (opportunity.lifecycle !== "open") return { opportunityId: opportunity.id, score: 0, band: "low", confidence: "high", rules: [], unavailableChecks: [], recommendedNextStep: "No active-pipeline action", excludedReason: `${opportunity.lifecycle} records are excluded from active scoring` };
   const rules: TriggeredRule[] = []; const unavailableChecks: string[] = [];
-  const add = (id: string, evidence: string, nextStep: string) => { const rule = pack.rules.find((item) => item.id === id); if (rule) rules.push({ id, label: rule.label, weight: rule.weight, evidence, nextStep }); };
+  const add = (id: string, evidence: string, nextStep: string) => { const rule = pack.rules.find((item) => item.id === id); if (rule) rules.push({ id, version: rule.version, label: rule.label, weight: rule.weight, evidence, nextStep }); };
   if (!opportunity.owner) add("missing-owner", "No owner is stored", "Assign an accountable owner");
   if (!opportunity.email && !opportunity.phone) add("missing-contact", "Neither email nor phone is stored", "Add a reliable contact route");
   if (opportunity.nextFollowUp && opportunity.nextFollowUp < reviewDate) add("overdue-follow-up", `Follow-up was due ${opportunity.nextFollowUp}`, "Re-engage and set a new follow-up");
@@ -23,6 +23,8 @@ export function assessOpportunity(opportunity: Opportunity, reviewDate: string, 
   if (pack.id === "interiors" && ["site visit", "design proposal", "commercial proposal"].includes(opportunity.stage?.toLowerCase() ?? "") && !opportunity.vertical.siteVisit) add("site-visit-gap", "No site visit is recorded for an advanced project", "Confirm the site visit and project constraints");
   if (pack.id === "agency" && opportunity.stage?.toLowerCase() === "proposal" && knownInactiveDays != null && knownInactiveDays >= 14) add("proposal-silence", "Proposal has had no recent activity", "Ask for a decision or objection");
   if (pack.id === "saas" && opportunity.vertical.trialEnd && String(opportunity.vertical.trialEnd) <= reviewDate && !opportunity.nextFollowUp) add("trial-ending", "Trial ended without a stored next step", "Schedule a trial outcome review");
+  if (pack.id === "recruitment" && opportunity.stage?.toLowerCase() === "client interview" && !opportunity.vertical.clientFeedbackDate) add("client-feedback-wait", "No client feedback date is recorded after interview", "Confirm feedback status with the client");
+  if (pack.id === "recruitment" && opportunity.stage?.toLowerCase() === "offer" && opportunity.vertical.offerDue && String(opportunity.vertical.offerDue) < reviewDate) add("offer-overdue", `Offer was due ${String(opportunity.vertical.offerDue)}`, "Confirm the offer outcome and next step");
   const score = Math.min(100, rules.reduce((sum, rule) => sum + rule.weight, 0) + (opportunity.value && rules.some((rule) => rule.id === "inactive") ? 8 : 0));
   const riskRules = rules.filter((rule) => BUSINESS_RISK_FACTORS[rule.id] && !["missing-owner", "missing-contact"].includes(rule.id));
   const riskFactor = Math.min(.6, riskRules.reduce((sum, rule) => sum + BUSINESS_RISK_FACTORS[rule.id], 0));

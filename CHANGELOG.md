@@ -1,46 +1,39 @@
 # Changelog
 
-All notable changes to this project will be documented here.
+This project follows Keep a Changelog and Semantic Versioning.
 
-This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/). Nothing has been tagged as a release yet, so everything below is grouped under `[Unreleased]`.
-
----
-
-## [Unreleased]
+## [2.0.0-preview] - 2026-07-24
 
 ### Added
 
-**Project foundation**
-- Next.js 16 (App Router, Turbopack), TypeScript (strict), Tailwind CSS v4, ESLint, and Vitest scaffolding
-- `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `ROADMAP.md`, `SECURITY.md`, `CHANGELOG.md`, and `PRODUCT-SPEC.md`
+- Local-first engine/reference-app positioning and two-mode onboarding
+- Stable completed example routes for four built-in packs plus Recruitment Agency
+- Typed `definePack`, validation, schema/version metadata and community contribution path
+- Headless `analyseDataset` API
+- Progressive evidence and developer diagnostics
+- Versioned review exports and safe portable pack configuration
+- Sanitized local SVG result-card sharing
+- Disabled-by-default privacy-respecting telemetry abstraction
+- Versioned IndexedDB schema 3 with preservation migration
+- Complete architecture, pack, embedding, data, rules, privacy, integration, export, deployment and telemetry docs
+- GitHub issue/PR templates, CI, CodeQL, dependency review, Dependabot and good-first-issue proposals
 
-**Landing page**
-- Hero, Why Vouch, How It Works, Open Source, and footer sections describing the product and linking into the upload flow
+### Preserved
 
-**CSV upload**
-- Drag-and-drop and click-to-browse upload, parsed entirely client-side with PapaParse (no data ever sent to a server)
-- Automatic detection of 8 common fields (Name, Email, Phone, Revenue, Stage, Owner, Lead Source, Date) with an editable column-mapping confirmation screen
+- Dependency-free bounded XLSX parser
+- Four existing vertical packs and editable mapping
+- Immutable reviews, comparison, Action Centre, measured outcomes and backups
+- Non-causal outcome wording and conservative value-at-risk logic
 
-**Dashboard and insights engine**
-- `lib/insights/` — pure, individually testable functions for every dashboard metric (totals, missing/duplicate contact counts, pipeline and revenue by stage, top lead sources, top owners)
-- Dashboard UI — stat cards, Pipeline by Stage and Revenue by Stage charts (Recharts), Top Lead Sources and Top Owners tables
-- Every metric and chart falls back to a clear, specific message (e.g. "Email column was not mapped") instead of failing when a column isn't mapped
+### Known limitations
 
-**Executive Summary**
-- A deterministic, plain-English summary sentence, "What's Going Well" / "Needs Attention" observations, a single prioritized "Today's Priority" action, and additional recommendations — generated from dashboard metrics with no AI calls
-- A Business Health strip with five status cards (Pipeline Value, Contact Quality, Data Completeness, Owner Coverage, Revenue Visibility)
+- No accounts, cloud sync, scheduled ingestion, CRM write-back or team collaboration
+- Local data is tied to a browser profile and origin
+- Portable pack JSON describes supported declarative rules; it cannot carry executable custom code
+- Review JSON may contain normalized business records and must be handled as sensitive
 
-**Localization**
-- India-first currency formatting throughout the dashboard — ₹ symbol, Indian digit grouping (e.g. `₹15,31,50,000`), and compact lakh/crore notation on chart axes
+## [0.1.0] - 2026-05-01
 
-**Export and demo readiness**
-- A sticky dashboard action bar to download the summary as a `.txt` file, copy it to the clipboard, or print a clean report
-- Print-friendly styles that hide navigation and action buttons and avoid awkward page breaks
-- A bundled sample dataset and a "Try with sample data" action, plus a "Download sample CSV" link, so the dashboard can be explored without a real file
-- An onboarding mini-guide on the upload page, per-field descriptions on the mapping screen, real row-count progress while parsing, and contextual tooltips throughout the dashboard
+- Initial CSV review, dashboard, deterministic insights and local sample workflow.
 
----
-
-<!-- Releases will be added below as they ship -->
-
-[Unreleased]: https://github.com/yourvouch/vouch-starter-kit/compare/HEAD...HEAD
+[2.0.0-preview]: https://github.com/yourvouch/vouch-starter-kit/releases/tag/v2.0.0-preview

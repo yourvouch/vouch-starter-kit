@@ -1,122 +1,57 @@
-# Vouch Starter Kit 2.0
+# Vouch Starter Kit 2.0 Preview
 
-**An open-source, privacy-first Founder Decision Review.**
+> A local-first, open-source decision intelligence engine and reference app that turns CSV/XLSX business data into explainable priorities, actions, comparisons and outcomes.
 
-Upload CSV or Excel data. Understand what deserves attention. Create actions. Save the review. Compare the next review. Observe what changed.
+[![Vouch Starter Kit 2.0 Preview](public/badges/built-with-vouch.svg)](https://vouchstarterkit.netlify.app/)
+[![CI](https://github.com/yourvouch/vouch-starter-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/yourvouch/vouch-starter-kit/actions/workflows/ci.yml)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-075b3a.svg)](LICENSE)
 
-> **Status:** Vouch Starter Kit 2.0 Preview — available for external review, not yet described as a final stable release.
+[Explore the live Starter Kit](https://vouchstarterkit.netlify.app/) · [Star the repository](https://github.com/yourvouch/vouch-starter-kit/stargazers) · [Build your first pack](docs/BUILD_A_VERTICAL_PACK.md)
 
-[![Live Starter Kit](https://img.shields.io/badge/Live-Starter%20Kit-006b4f)](https://silly-selkie-ec5eda.netlify.app/)
-[![Vouch website](https://img.shields.io/badge/Vouch-Website-123b32)](https://yourvouch.com/)
-[![Full product demo](https://img.shields.io/badge/Full%20product-Demo-e66a2c)](https://demo.yourvouch.com/)
-[![GitHub Issues](https://img.shields.io/badge/GitHub-Issues-24292f)](https://github.com/yourvouch/vouch-starter-kit/issues)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![Founder Decision Review](docs/images/v2/founder-decision-review.png)
 
-| Destination | Role |
-|---|---|
-| [Live Starter Kit](https://silly-selkie-ec5eda.netlify.app/) | Hosted preview of this open-source repository |
-| [yourvouch.com](https://yourvouch.com/) | Website for the commercial Vouch product |
-| [demo.yourvouch.com](https://demo.yourvouch.com/) | Richer demonstration of the full product experience |
-| [GitHub Issues](https://github.com/yourvouch/vouch-starter-kit/issues) | Bugs, questions, and feature requests for the Starter Kit |
+Source files are parsed locally and discarded after parsing. No signup or backend is required for the core workflow. Deterministic rules remain inspectable, saved reviews are immutable and optional aggregate telemetry is disabled by default.
 
-The Netlify preview is the hosted Starter Kit, not the main commercial Vouch website.
+## Explore examples
 
-![Vouch Starter Kit landing page with the Founder Decision Review introduction](docs/images/v2/landing-page.png)
+- [Interior design & architecture](https://vouchstarterkit.netlify.app/examples/interiors)
+- [Agency & consulting](https://vouchstarterkit.netlify.app/examples/agency)
+- [SaaS](https://vouchstarterkit.netlify.app/examples/saas)
+- [General sales](https://vouchstarterkit.netlify.app/examples/general-sales)
+- [Recruitment Agency developer example](https://vouchstarterkit.netlify.app/examples/recruitment)
 
-*The open-source Starter Kit begins with a local, no-signup path from business data to priorities and actions.*
+Each stable route opens a completed, prebuilt workspace with two review periods, comparison, actions and outcomes. It renders without upload or IndexedDB onboarding.
 
-## What this repository is
+## What it is
 
-This repository contains the open-source **Vouch Starter Kit**. It is separate from the fuller commercial Vouch product experience presented on [yourvouch.com](https://yourvouch.com/) and [demo.yourvouch.com](https://demo.yourvouch.com/).
+- A browser-local CSV/XLSX analysis engine
+- A typed, validated vertical-pack system
+- A headless TypeScript analysis API
+- A reference Founder Decision Review workflow
+- A foundation for consultants, agencies, operators and vertical SaaS builders
 
-The Starter Kit runs in a modern browser. Uploaded CSV and XLSX files are processed locally: no signup, backend, compulsory AI, or cloud data upload is required. Its deterministic rules are readable, testable, and do not require an AI API.
+## What it is not
 
-## Product loop
+- Not a hosted CRM or cloud synchronization service
+- Not a black-box AI predictor
+- Not a system that uploads source files by default
+- Not the complete commercial Vouch product
+
+## What developers can build
+
+Fork it to create a branded decision review, a consultant assessment, an embedded analysis workflow, a local operations tool or a new vertical decision product. Built-in packs cover general sales, interiors, agency/consulting and SaaS. Recruitment Agency demonstrates the fifth-pack contribution path.
+
+## Reference product loop
 
 ```text
-Choose business type
-→ Upload CSV/XLSX or try a sample
-→ Confirm mapping
-→ Confirm stages and identity
-→ Generate Founder Decision Review
-→ Save workspace
-→ Create actions
-→ Add a later review
-→ Compare changes
-→ Observe outcomes
+Choose pack → parse CSV/XLSX locally → confirm mapping → generate review
+→ save immutable baseline → create actions → add later review
+→ compare movements → observe associated outcomes
 ```
-
-Every screen is designed to answer one question: **What deserves my attention?**
-
-## Current capabilities
-
-### Four vertical packs
-
-- General sales
-- Interior design and architecture
-- Agency and consulting
-- SaaS
-
-Each pack provides its own fields, samples, stage semantics, and deterministic intelligence rules.
-
-### Import and review
-
-- Local CSV and modern XLSX import
-- Pack-aware automatic mapping and editable field mapping
-- Required, recommended, and optional field readiness
-- Explicit stage semantics and opportunity identity strategies
-- Explainable deterministic attention scoring with evidence and confidence
-- Founder Decision Review with priorities and recommended next steps
-- Conservative, explainable value-at-risk calculations
-
-### Persistent workspaces and comparison
-
-- IndexedDB workspaces stored in the current browser profile
-- Immutable saved review snapshots and dated review history
-- Previous-versus-current comparison with matching strategy and confidence
-- Progressed, regressed, stalled, won, lost, reopened, new, and removed movements
-- Aggregate metric and risk movement, with unresolved matches excluded visibly
-
-### Actions, outcomes, and portability
-
-- Persistent Action Centre with linked and manual actions
-- Action lifecycle, owners, due dates, filters, sorting, carry-forward, and duplicate prevention
-- Measured outcomes from later saved reviews, retaining previous/current evidence and matching confidence
-- Versioned JSON backup, import preview, merge, and confirmed replace
-- Action Centre CSV export and print-friendly reviews
-- Responsive desktop and mobile layouts
-
-## Founder Decision Review
-
-![Saved Founder Decision Review showing conservative value at risk and explainable founder priorities](docs/images/v2/founder-decision-review.png)
-
-*A saved, immutable review shows priorities, supporting evidence, confidence, and the calculation behind value at risk.*
-
-## Review comparison
-
-![Comparison of two eligible saved reviews with metric deltas and opportunity movements](docs/images/v2/review-comparison.png)
-
-*Eligible snapshots are matched without mutation or rescoring, with previous/current metrics, risk movement, and opportunity-level changes.*
-
-## Action Centre
-
-![Persistent Action Centre with recommended, in-progress, completed, and measured actions](docs/images/v2/action-centre.png)
-
-*Actions stay linked to their source review and opportunity; later reviews can produce measured outcomes using explicit non-causal language.*
-
-## Privacy and trust
-
-- Uploaded CSV/XLSX binaries are parsed locally and are **not stored**.
-- Parsed review data can be stored locally in IndexedDB when a review is saved.
-- Saved workspaces remain in that browser profile; there are no accounts or cloud sync.
-- Users can export a versioned JSON backup, import data, delete a workspace, or clear all local data.
-- Credentials, tokens, secrets, and uploaded source files are not included in backups.
-- Deterministic outputs do not require an AI API.
-- Vouch reports associated outcomes but does not claim that an action caused a result.
 
 ## Quick start
 
-Requirements: **Node.js 20+**, npm, and a modern browser with IndexedDB support.
+Requires Node.js 20+.
 
 ```bash
 git clone https://github.com/yourvouch/vouch-starter-kit.git
@@ -125,64 +60,114 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000), select a business type, and upload a CSV/XLSX file or use the selected pack's sample.
+Open `http://localhost:3000`. No environment variables are required.
+
+## Build your first pack
+
+Packs use a validated declarative contract:
+
+```ts
+export const recruitmentPack = definePack({
+  id: "recruitment",
+  name: "Recruitment Agency",
+  version: "1.0.0",
+  schemaVersion: 1,
+  category: "example",
+  maintainer: "Your name",
+  fields: [],
+  stages: [],
+  rules: [],
+  samples: { previous: [], current: [] },
+});
+```
+
+Follow [Build a vertical pack](docs/BUILD_A_VERTICAL_PACK.md) for metadata, aliases, stages, normalizers, evidence, missing-evidence handling, samples, registration and tests.
+
+## Headless API
+
+```ts
+import { analyseDataset } from "./lib/v2/analyse";
+import { suggestMappings } from "./lib/v2/mapping";
+import { verticalPacks } from "./lib/v2/packs";
+
+const pack = verticalPacks.recruitment;
+const result = analyseDataset({
+  pack,
+  rows,
+  mapping: suggestMappings(Object.keys(rows[0]), rows, pack),
+  reviewDate: "2026-07-24",
+});
+```
+
+`result` is JSON serializable and contains the immutable review, metrics, conservative risk summary, priorities, optional comparison and action summary. Parsing, persistence and React are outside the core API. See [Embedding](docs/EMBEDDING.md).
+
+## Export formats
+
+- Versioned full-browser backup with workspaces, mappings, preferences, reviews and actions
+- Versioned review JSON with pack identity, evidence, unavailable checks, actions and optional comparison
+- Portable non-executable pack configuration without samples
+- Sanitized local SVG result card without names, contacts, filenames, company names or record-level values
+- Action Centre CSV and print review
+
+Schemas and trust boundaries are documented in [Export format](docs/EXPORT_FORMAT.md).
+
+## Included packs
+
+| Pack | Category | Purpose |
+|---|---|---|
+| General sales | Built-in | Flexible opportunity pipelines |
+| Interior design & architecture | Built-in | Enquiry through handover |
+| Agency & consulting | Built-in | Proposals, projects and retainers |
+| SaaS | Built-in | Trials, subscriptions and renewals |
+| Recruitment Agency | Example | Roles, candidates, interviews and offers |
+
+Future community packs live under `packs/community/` and are community-maintained unless explicitly adopted.
 
 ## Architecture
 
-```text
-app/
-  page.tsx                         Landing page
-  review/                          Six-step review workflow
-  workspaces/                      Workspace list and persisted workspace routes
-  workspaces/[id]/                 Latest review, history, comparison, actions, settings
-  actions/                         Cross-workspace Action Centre
-  local-data/                      Backup, import, and clear-local-data tools
+Core logic is under `lib/v2/`: pack validation, mapping, normalization, analysis, comparison, actions/outcomes, portable exports, sharing, telemetry and versioned IndexedDB storage. UI routes and components consume those modules but do not own the decision logic.
 
-components/v2/
-  Landing, ReviewFlow, WorkspaceHome, ReviewHistory,
-  CompareReviews, ActionCentre, WorkspaceSettings, and shared navigation
+Read [Architecture](ARCHITECTURE.md), [Data model](docs/DATA_MODEL.md) and [Rules engine](docs/RULES_ENGINE.md).
 
-lib/v2/
-  domain.ts                        Core types and immutable snapshot model
-  packs.ts                         Vertical fields, stages, samples, and rules
-  mapping.ts                       Detection, editable mapping, and readiness
-  intelligence.ts                 Explainable scoring and value-at-risk logic
-  comparison.ts                   Eligibility, matching, movements, and deltas
-  actions.ts                      Actions, transitions, outcomes, and exports
-  storage.ts                      Versioned IndexedDB persistence and backups
-  reviews.ts                      Normalized saved-review construction
-  xlsx.ts                         Dependency-free ZIP/XML XLSX parser
-  *.test.ts                       Deterministic Vitest coverage
-```
+## Privacy
 
-The application uses Next.js App Router, React, TypeScript, and browser-native IndexedDB. CSV parsing uses PapaParse; the XLSX reader is implemented locally without an Excel parsing dependency.
+- CSV/XLSX binaries are held in memory for parsing and never stored.
+- Parsed snapshots, mappings, preferences and actions are stored only after the user saves a workspace.
+- Local data survives refresh in the current browser profile and origin.
+- JSON exports contain parsed review data; review sharing is a separate sanitized aggregate.
+- Telemetry is a no-op unless a fork explicitly enables an adapter.
+- Users can delete one workspace or clear all local data.
 
-## Development
+Read [Privacy architecture](docs/PRIVACY_ARCHITECTURE.md) before embedding or adding telemetry.
+
+## Open source and commercial Vouch
+
+Open source includes local ingestion, normalization, packs, deterministic rules, workspaces, comparisons, actions, outcomes and local exports.
+
+[Commercial Vouch](https://yourvouch.com) adds managed deployment, cloud sync, scheduled ingestion, connectors, collaboration, permissions, notifications, workflow automation, audit logs, managed custom packs, rule tuning, assisted implementation, operating cadence and support. [The full demo](https://demo.yourvouch.com) shows the richer operational experience.
+
+**Starter Kit proves the intelligence locally. Commercial Vouch operationalizes it continuously.**
+
+## Testing
 
 ```bash
 npm test
 npm run lint
 npx tsc --noEmit
 npm run build
+git diff --check
 ```
 
-Tests cover the domain model, vertical packs, mapping, XLSX safety, IndexedDB CRUD and migrations, immutable snapshots, comparisons, actions, measured outcomes, backup/import, exports, and persistent workflows.
+Coverage includes XLSX safety, pack schemas, mapping, scoring, IndexedDB migrations/CRUD, immutable snapshots, comparison, actions, outcomes, backups, exports, example determinism, headless analysis, sanitization and telemetry defaults.
 
-## Current limitations
+## Deployment
 
-- No accounts
-- No cloud sync
-- No CRM write-back
-- No email notifications
-- No billing
-- Local data is specific to a browser profile and origin
-- JSON export/import is required to move workspaces between browsers
-- Output quality and available insights depend on the quality and mapping of source data
+See [Deployment](docs/DEPLOYMENT.md) for tested Netlify and Vercel settings and self-hosting constraints. Browser-local persistence is origin-specific; moving domains requires an explicit JSON backup/import.
 
-## Contributing and support
+## Contributing
 
-Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md), follow the [Code of Conduct](CODE_OF_CONDUCT.md), report security issues as described in [SECURITY.md](SECURITY.md), and use [GitHub Issues](https://github.com/yourvouch/vouch-starter-kit/issues) for product feedback.
+Read [Contributing](CONTRIBUTING.md), the [Code of Conduct](CODE_OF_CONDUCT.md), [Security](SECURITY.md), [Good first issues](.github/GOOD_FIRST_ISSUES.md) and the [Roadmap](ROADMAP.md). Bugs, mapping requests, integrations and vertical packs have dedicated issue templates.
 
 ## License
 
-MIT © [Vouch](LICENSE)
+MIT © Vouch.

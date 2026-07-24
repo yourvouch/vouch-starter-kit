@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SkipLink } from "@/components/v2/SkipLink";
 import "./globals.css";
 
-export const metadata: Metadata = { title: "Vouch — Founder Decision Review", description: "Turn your business data into clear priorities and actions, entirely inside your browser." };
+export const metadata: Metadata = { title: "Vouch Starter Kit 2.0 Preview", description: "Local-first open-source decision intelligence engine and reference app for explainable CSV/XLSX business analysis." };
 
 export default function RootLayout({
   children,

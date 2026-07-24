@@ -7,13 +7,13 @@ import type { Opportunity, PackId } from "./domain";
 
 describe("deployed vertical regressions", () => {
   it("keeps each vertical's sample, fields, stages, rules, and saved pack ID", () => {
-    const expected: Record<PackId, { field: string; stage: string; rule?: string }> = {
+    const expected: Record<Exclude<PackId, "recruitment">, { field: string; stage: string; rule?: string }> = {
       general: { field: "company", stage: "Negotiation" },
       interiors: { field: "projectType", stage: "Design proposal", rule: "site-visit-gap" },
       agency: { field: "serviceLine", stage: "Contracting", rule: "proposal-silence" },
       saas: { field: "mrr", stage: "Trial", rule: "trial-ending" },
     };
-    for (const packId of Object.keys(expected) as PackId[]) {
+    for (const packId of Object.keys(expected) as Exclude<PackId, "recruitment">[]) {
       const pack = verticalPacks[packId]; const spec = expected[packId];
       expect(pack.fields.some((field) => field.key === spec.field)).toBe(true);
       expect(pack.stages.some((stage) => stage.name === spec.stage)).toBe(true);

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="218" height="32" role="img" aria-label="Built with Vouch Starter Kit">
+  <title>Built with Vouch Starter Kit</title>
+  <rect width="218" height="32" rx="7" fill="#ffffff" stroke="#b8c4bd"/>
+  <rect x="1" y="1" width="38" height="30" rx="6" fill="#075b3a"/>
+  <text x="20" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">V</text>
+  <text x="50" y="21" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#17211c">Built with Vouch Starter Kit</text>
+</svg>

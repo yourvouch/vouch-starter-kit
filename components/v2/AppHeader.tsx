@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const links = [
+  ["/examples/interiors", "Explore"],
   ["/review", "New review"],
   ["/workspaces", "Workspaces"],
   ["/actions", "Actions"],
@@ -19,10 +20,11 @@ export function AppHeader({ action = true }: { action?: boolean }) {
             {label}
           </Link>
         ))}
+        <a href="https://github.com/yourvouch/vouch-starter-kit">GitHub ↗</a>
       </nav>
       {action ? (
         <Link className="button button-primary header-action" href="/review">
-          Start a founder review
+          Use my data
         </Link>
       ) : (
         <span />
