@@ -1,6 +1,8 @@
 # Vouch Starter Kit 2.0 Preview
 
-> A local-first, open-source decision intelligence engine and reference app that turns CSV/XLSX business data into explainable priorities, actions, comparisons and outcomes.
+> Find where a business journey is breaking and decide what deserves attention next—from the data you already have.
+
+Vouch Starter Kit is the local-first, open-source foundation of Vouch. It turns CSV/XLSX records into explainable priorities, actions, comparisons and observed outcomes. Run it locally, inspect every rule, build an industry pack or embed the headless TypeScript engine in your own stack.
 
 [![Vouch Starter Kit 2.0 Preview](public/badges/built-with-vouch.svg)](https://vouchstarterkit.netlify.app/)
 [![CI](https://github.com/yourvouch/vouch-starter-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/yourvouch/vouch-starter-kit/actions/workflows/ci.yml)
@@ -11,6 +13,17 @@
 ![Founder Decision Review](docs/images/v2/founder-decision-review.png)
 
 Source files are parsed locally and discarded after parsing. No signup or backend is required for the core workflow. Deterministic rules remain inspectable, saved reviews are immutable and optional aggregate telemetry is disabled by default.
+
+## One Vouch product family
+
+Every Vouch surface follows the same method: **find the break → decide what deserves attention → test a clearer next action**.
+
+| Start here | Best when |
+|---|---|
+| [Problem Lab](https://demo.yourvouch.com) | You want to trace a customer journey in 60–90 seconds without uploading data |
+| [Data Lab](https://demo.yourvouch.com/data-lab) | You already have enquiry records and want to see the guided Vouch method |
+| [Starter Kit](https://vouchstarterkit.netlify.app/) | You want to run Vouch locally, inspect rules or build with the engine |
+| [Commercial Vouch](https://yourvouch.com/#contact) | You want a working session, guided implementation and continuous operation |
 
 ## Explore examples
 

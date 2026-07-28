@@ -2,6 +2,16 @@
 
 This project follows Keep a Changelog and Semantic Versioning.
 
+## [Unreleased]
+
+### Changed
+
+- Aligned the Starter Kit with the current Vouch customer-journey and decision-attention narrative
+- Added a clear Problem Lab, Data Lab, Starter Kit and commercial-working-session product map
+- Added ecosystem entry points for developers, industry experts, consultants and contributors
+- Added search, social sharing and software-discovery metadata, structured data, sitemap, robots rules and a web manifest
+- Added a generated Open Graph image and stable tagged documentation links
+
 ## [2.0.0-preview] - 2026-07-24
 
 ### Added

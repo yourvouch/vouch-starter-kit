@@ -3,16 +3,16 @@ import Link from "next/link";
 const links = [
   ["/examples/interiors", "Explore"],
   ["/review", "New review"],
-  ["/workspaces", "Workspaces"],
-  ["/actions", "Actions"],
-  ["/local-data", "Local data"],
+  ["/#ecosystem", "Build with Vouch"],
+  ["/local-data", "Privacy"],
 ];
 
 export function AppHeader({ action = true }: { action?: boolean }) {
   return (
     <header className="app-header">
       <Link className="brand" href="/">
-        Vouch
+        <span>Vouch</span>
+        <small>Starter Kit</small>
       </Link>
       <nav aria-label="Primary navigation">
         {links.map(([href, label]) => (
