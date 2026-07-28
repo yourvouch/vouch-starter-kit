@@ -1,16 +1,12 @@
-# Screenshots
+# Current product screenshots
 
-This folder contains the real screenshots referenced throughout the main [README.md](../../README.md). Each file below is embedded in the project README to give first-time visitors a visual tour of the product.
+These screenshots are captured from the deployed Vouch Starter Kit 2.0 experience and form the visual product tour in the main [README](../../README.md).
 
-| Filename | Shows |
-|----------|-------|
-| `dashboard-overview.png` | Overall dashboard showing Business Health, Executive Summary and key actions |
-| `landing-page.png` | Product landing page |
-| `upload-csv.png` | CSV upload screen |
-| `column-mapping.png` | Column mapping confirmation |
-| `executive-summary.png` | Executive Summary with Business Health and Today's Priority |
-| `dashboard-metrics.png` | KPI and data quality metrics |
-| `pipeline-insights.png` | Pipeline and revenue charts |
-| `lead-sources-owners.png` | Top lead sources and top owners |
+| File | Live surface |
+|---|---|
+| `v2/landing-page.jpg` | Current aligned Starter Kit landing page |
+| `v2/founder-decision-review.jpg` | Completed Interior design & architecture example with priorities, movements, actions and outcomes |
+| `v2/product-family.jpg` | Problem Lab, Data Lab, Starter Kit and Commercial Vouch chooser |
+| `v2/build-with-vouch.jpg` | Developer API, vertical pack, deployment and GitHub contribution paths |
 
-If a screenshot needs to be replaced (e.g. after a UI change), overwrite the file in place using the same filename so the README's references keep working.
+Capture screenshots from [vouchstarterkit.netlify.app](https://vouchstarterkit.netlify.app/) after the relevant production deployment. Do not use mockups or screenshots containing private uploaded data.

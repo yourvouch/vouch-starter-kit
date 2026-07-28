@@ -11,6 +11,7 @@ This project follows Keep a Changelog and Semantic Versioning.
 - Added ecosystem entry points for developers, industry experts, consultants and contributors
 - Added search, social sharing and software-discovery metadata, structured data, sitemap, robots rules and a web manifest
 - Added a generated Open Graph image and stable tagged documentation links
+- Replaced legacy repository screenshots with a current production product tour
 
 ## [2.0.0-preview] - 2026-07-24
 

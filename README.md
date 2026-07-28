@@ -10,7 +10,23 @@ Vouch Starter Kit is the local-first, open-source foundation of Vouch. It turns 
 
 [Explore the live Starter Kit](https://vouchstarterkit.netlify.app/) · [Star the repository](https://github.com/yourvouch/vouch-starter-kit/stargazers) · [Build your first pack](docs/BUILD_A_VERTICAL_PACK.md)
 
-![Founder Decision Review](docs/images/v2/founder-decision-review.png)
+## Current product tour
+
+### Find the break and decide what deserves attention
+
+[![Vouch Starter Kit 2.0 landing page](docs/images/v2/landing-page.jpg)](https://vouchstarterkit.netlify.app/)
+
+### Open a completed, evidence-supported review
+
+[![Completed Interior design and architecture review](docs/images/v2/founder-decision-review.jpg)](https://vouchstarterkit.netlify.app/examples/interiors)
+
+### Understand the Vouch product family
+
+[![Problem Lab, Data Lab, Starter Kit and Commercial Vouch](docs/images/v2/product-family.jpg)](https://vouchstarterkit.netlify.app/#product-map-title)
+
+### Build with Vouch in your own data, industry and stack
+
+[![Developer, vertical-pack and deployment paths](docs/images/v2/build-with-vouch.jpg)](https://vouchstarterkit.netlify.app/#ecosystem)
 
 Source files are parsed locally and discarded after parsing. No signup or backend is required for the core workflow. Deterministic rules remain inspectable, saved reviews are immutable and optional aggregate telemetry is disabled by default.
 
