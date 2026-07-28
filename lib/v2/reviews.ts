@@ -36,7 +36,10 @@ export function buildReviewSnapshot(input: { workspaceId: string; packId: PackId
       expectedClose: normalizeDate(valueFor(row, input.mappings, "expectedClose")),
     };
     const mappedColumns = new Set(input.mappings.map((item) => item.column).filter(Boolean));
-    const vertical = { ...Object.fromEntries(Object.entries(row).filter(([header]) => !mappedColumns.has(header)).map(([header, value]) => [cleanHeader(header), value])), projectType, location, siteVisit: normalizeDate(valueFor(row, input.mappings, "siteVisit")), startDate: normalizeDate(valueFor(row, input.mappings, "startDate")), clientName: company };
+    const verticalFields = Object.fromEntries(pack.fields
+      .filter((field) => !["opportunityId", "name", "company", "email", "phone", "value", "currency", "stage", "status", "owner", "source", "createdDate", "lastActivity", "nextFollowUp", "expectedClose"].includes(field.key))
+      .map((field) => [field.key, /date|visit|due|end|start/i.test(field.key) ? normalizeDate(valueFor(row, input.mappings, field.key)) : normalizeText(valueFor(row, input.mappings, field.key)) || undefined]));
+    const vertical = { ...Object.fromEntries(Object.entries(row).filter(([header]) => !mappedColumns.has(header)).map(([header, value]) => [cleanHeader(header), value])), ...verticalFields, projectType, location, clientName: company };
     return { ...base, id: identityFor(base).id, lifecycle: lifecycleFor(base.stage, base.status, pack), vertical, sourceRow: index + 2 } as Opportunity;
   });
   return {

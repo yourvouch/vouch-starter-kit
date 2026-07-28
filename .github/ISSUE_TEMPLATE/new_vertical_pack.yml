@@ -1,0 +1,23 @@
+name: New vertical pack
+description: Propose a deterministic vertical pack.
+title: "[Pack]: "
+labels: ["vertical-pack"]
+body:
+  - type: input
+    id: vertical
+    attributes: { label: Vertical }
+    validations: { required: true }
+  - type: textarea
+    id: decisions
+    attributes: { label: Decisions this pack should support, description: Describe evidence and unavailable states without unsupported claims. }
+    validations: { required: true }
+  - type: textarea
+    id: fields
+    attributes: { label: Typical export fields and stages }
+    validations: { required: true }
+  - type: checkboxes
+    id: maintain
+    attributes:
+      label: Contribution
+      options:
+        - label: I can contribute or maintain synthetic samples and deterministic tests.

@@ -1,0 +1,17 @@
+name: Data mapping request
+description: Request support for a safe export header pattern.
+title: "[Mapping]: "
+labels: ["mapping"]
+body:
+  - type: dropdown
+    id: pack
+    attributes: { label: Pack, options: ["General sales", "Interiors", "Agency", "SaaS", "Recruitment", "Other"] }
+    validations: { required: true }
+  - type: textarea
+    id: headers
+    attributes: { label: Sanitized headers, description: List headers and synthetic values only. }
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes: { label: Expected canonical mapping }
+    validations: { required: true }

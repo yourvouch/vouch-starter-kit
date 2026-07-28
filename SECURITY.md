@@ -1,57 +1,22 @@
-# Security Policy
+# Security policy
 
-## Supported Versions
+The latest preview release and current development branch receive security fixes.
 
-As Vouch is pre-release, security fixes will be applied to the latest code on `main`. Once versioned releases begin, this table will be updated.
+## Private reporting
 
-| Version | Supported |
-|---------|-----------|
-| `main` (pre-release) | Yes |
+Do not open a public issue for a vulnerability. Email `shivacharan.s@gmail.com` with impact, reproduction, affected version and a synthetic proof of concept. Do not send real customer files or credentials.
 
----
+## In scope
 
-## Reporting a Vulnerability
+- local file parsing and ZIP/XML boundary bypasses
+- unsafe import/export handling
+- source-data leakage through UI, exports or telemetry
+- XSS or executable portable-pack injection
+- migration behavior that destroys local workspaces
+- insecure self-hosting defaults in committed configuration
 
-If you discover a security vulnerability, **please do not open a public GitHub issue**. Doing so could expose users to risk before a fix is available.
+Third-party dependency issues should also be reported upstream, but a Vouch-specific exploit path is in scope.
 
-Instead, report it privately by emailing:
+## Design defenses
 
-**shivacharan.s@gmail.com**
-
-Please include:
-
-- A description of the vulnerability and its potential impact
-- Steps to reproduce or a proof-of-concept (if possible)
-- Any relevant environment details (OS, browser, version)
-
----
-
-## What to Expect
-
-- You will receive an acknowledgment within **48 hours**
-- We will investigate and keep you informed of our progress
-- Once a fix is confirmed and released, we will credit you in the changelog (unless you prefer to remain anonymous)
-
----
-
-## Scope
-
-The following are in scope for security reports:
-
-- Data exposure or leakage
-- Authentication or authorization issues (once implemented)
-- Injection vulnerabilities (SQL, XSS, command injection, etc.)
-- Insecure defaults in self-hosted configurations
-
-The following are out of scope:
-
-- Issues in third-party dependencies (report those upstream)
-- Theoretical vulnerabilities without a realistic attack scenario
-- Social engineering
-
----
-
-## Thank You
-
-Responsible disclosure makes open-source software safer for everyone. We genuinely appreciate the time and care that goes into finding and reporting security issues.
-
+The XLSX reader validates signatures, bounds, encryption, relationships, traversal and expanded sizes. Portable packs reject executable content. Telemetry is disabled. Uploaded binaries are not persisted. Sanitized cards exclude record-level data.

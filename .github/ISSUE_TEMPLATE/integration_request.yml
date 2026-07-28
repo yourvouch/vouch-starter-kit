@@ -1,0 +1,17 @@
+name: Integration request
+description: Propose an import, embedding or storage architecture.
+title: "[Integration]: "
+labels: ["integration"]
+body:
+  - type: input
+    id: system
+    attributes: { label: System or export format }
+    validations: { required: true }
+  - type: textarea
+    id: workflow
+    attributes: { label: User workflow and data boundary }
+    validations: { required: true }
+  - type: textarea
+    id: privacy
+    attributes: { label: Credentials, consent and privacy considerations }
+    validations: { required: true }

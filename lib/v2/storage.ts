@@ -1,7 +1,8 @@
 import type { VouchAction } from "./actions";
 import type { PackId, ReviewSnapshot } from "./domain";
+import { verticalPacks } from "./packs";
 
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 export const DB_NAME = "vouch-starter-kit";
 export const STORE_NAMES = ["workspaces", "reviews", "actions"] as const;
 export type StoreName = (typeof STORE_NAMES)[number];
@@ -10,6 +11,7 @@ export interface Workspace {
   id: string;
   name: string;
   packId: PackId;
+  packVersion?: string;
   createdAt: string;
   updatedAt: string;
   mapping: Record<string, string>;
@@ -29,6 +31,13 @@ export interface ImportPreview {
   errors: string[];
   counts: { workspaces: number; reviews: number; actions: number };
   conflicts: { store: StoreName; id: string; label: string }[];
+}
+
+export function migrateWorkspaceRecord(record: Partial<Workspace> & { id: string }, oldVersion: number): Partial<Workspace> & { id: string } {
+  let migrated = { ...record };
+  if (oldVersion < 2) migrated = { mapping: {}, preferences: {}, ...migrated };
+  if (oldVersion < 3) migrated = { ...migrated, preferences: { ...(migrated.preferences ?? {}), migrationNotice: "Schema 3 preserves existing reviews; export a backup before destructive local-data changes." } };
+  return migrated;
 }
 
 const clone = <T>(value: T): T => structuredClone(value);
@@ -51,12 +60,12 @@ export function applySchemaMigration(db: IDBDatabase, tx: IDBTransaction, oldVer
       store.createIndex("workspaceId", "workspaceId", { unique: false });
     }
   }
-  if (oldVersion < 2) {
+  if (oldVersion < 3) {
     const workspaces = tx.objectStore("workspaces");
     workspaces.openCursor().onsuccess = (event) => {
       const cursor = (event.target as IDBRequest<IDBCursorWithValue | null>).result;
       if (!cursor) return;
-      cursor.update({ mapping: {}, preferences: {}, ...cursor.value });
+      cursor.update(migrateWorkspaceRecord(cursor.value, oldVersion));
       cursor.continue();
     };
   }
@@ -109,7 +118,7 @@ export async function byWorkspace<T extends { workspaceId: string }>(storeName: 
 
 export async function createWorkspace(input: { name: string; packId: PackId; mapping?: Record<string, string>; preferences?: Record<string, string | boolean> }) {
   const now = new Date().toISOString();
-  const workspace: Workspace = { id: crypto.randomUUID(), name: input.name.trim() || "Untitled workspace", packId: input.packId, createdAt: now, updatedAt: now, mapping: input.mapping ?? {}, preferences: input.preferences ?? {} };
+  const workspace: Workspace = { id: crypto.randomUUID(), name: input.name.trim() || "Untitled workspace", packId: input.packId, packVersion: verticalPacks[input.packId].version, createdAt: now, updatedAt: now, mapping: input.mapping ?? {}, preferences: input.preferences ?? {} };
   await put("workspaces", workspace);
   return workspace;
 }
